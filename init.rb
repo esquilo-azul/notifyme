@@ -7,4 +7,6 @@ Redmine::Plugin.register :notifyme do
   author 'Eduardo Henrique Bogoni'
   description 'Notificações'
   version '0.1.0'
+
+  settings(default: {}, partial: 'settings/notifyme')
 end
