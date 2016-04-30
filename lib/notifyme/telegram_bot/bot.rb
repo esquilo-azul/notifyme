@@ -9,11 +9,11 @@ module Notifyme
         end
       end
 
-      def send_message(messages, chat_id)
+      def send_message(messages, chat_id = nil)
         messages = [messages] unless messages.is_a?(Array)
         run do |bot|
           messages.each do |message|
-            bot.api.sendMessage(chat_id: chat_id, text: message)
+            bot.api.sendMessage(chat_id: Settings.telegram_chat_id(chat_id), text: message)
           end
         end
       end
