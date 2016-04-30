@@ -25,6 +25,16 @@ module Notifyme
           bot.api.sendPhoto(chat_id: Settings.telegram_chat_id(chat_id), photo: photo)
         end
       end
+
+      def send_html_photo(html, chat_id = nil)
+        send_photo(html_to_image_file(html), chat_id)
+      end
+
+      def html_to_image_file(html)
+        kit = IMGKit.new(html, quality: 50, width: 600)
+        file = Tempfile.new(['development-helper-image', '.png'])
+        Faraday::UploadIO.new(kit.to_file(file.path), nil)
+      end
     end
   end
 end

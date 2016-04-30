@@ -14,5 +14,10 @@ namespace :notifyme do
     task :send_photo, [:photo_file, :chat_id] => :environment do |_t, args|
       Notifyme::TelegramBot::Bot.new.send_photo(args.photo_file, args.chat_id)
     end
+
+    desc 'Converte um HTML para imagem e envia para um chat Telegram'
+    task :send_html, [:html, :chat_id] => :environment do |_t, args|
+      Notifyme::TelegramBot::Bot.new.send_html_photo(args.html, args.chat_id)
+    end
   end
 end
