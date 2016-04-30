@@ -1,0 +1,42 @@
+<style>
+.title {
+  color: #007;
+  font-size: 12pt
+}
+
+.date {
+  font-weight: bold;
+}
+
+.author, .date, .content {
+  font-size: 10pt;
+}
+
+div {
+  margin-bottom: 0.1em;
+}
+
+.content {
+  padding: 0.3em;
+  background-color: #EEE;
+}
+
+.content blockquote {
+  border: thin solid #BBB;
+  background-color: #DDD;
+  padding: 0.3em;
+}
+
+.content blockquote p {
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class='author'>
+  <span class='date'><%= date %></span>:
+  <%= author %>
+</div>
+<div class="title"><%= title %></div>
+<div class="attributes"><%= attributes %></div>
+<div class="content"><%= content %></div>
