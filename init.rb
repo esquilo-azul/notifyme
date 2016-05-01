@@ -3,6 +3,7 @@
 require 'redmine'
 
 require 'notifyme/patches/issue_patch'
+require 'notifyme/patches/journal_patch'
 
 Redmine::Plugin.register :notifyme do
   name 'Notify me'
