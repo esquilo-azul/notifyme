@@ -9,3 +9,7 @@ gem 'wkhtmltoimage-binary'
 # Cria imagens a partir de HTML+CSS
 # https://github.com/csquared/IMGKit
 gem 'imgkit'
+
+# Codificação HTML
+# https://github.com/threedaymonk/htmlentities
+gem 'htmlentities', '~> 4.3.4'
