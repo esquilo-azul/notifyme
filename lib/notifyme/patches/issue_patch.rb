@@ -13,7 +13,8 @@ module Notityme
 
       module InstanceMethods
         def issue_create_event
-          Notifyme::Events::Issue::Add.new(self).notify
+          return unless Notifyme::Settings.issue_create_event_notify
+          Notifyme::Events::Issue::Create.new(self).notify
         end
       end
     end

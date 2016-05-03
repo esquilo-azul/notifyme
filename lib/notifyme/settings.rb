@@ -16,5 +16,13 @@ module Notifyme
       raise "O ID do chat Telegram não foi informado e não está registrado um ID padrão. Informe" \
         " o ID do chat ou registre um ID padrão em /settings/plugin/notifyme."
     end
+
+    def self.issue_create_event_notify
+      Setting.plugin_notifyme[__method__]
+    end
+
+    def self.issue_update_event_notify
+      Setting.plugin_notifyme[__method__]
+    end
   end
 end
