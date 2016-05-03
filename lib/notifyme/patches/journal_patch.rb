@@ -14,7 +14,7 @@ module Notityme
       module InstanceMethods
         def journal_create_event
           return unless journalized_type == 'Issue' && Notifyme::Settings.issue_update_event_notify
-          Notifyme::Events::Issue::Update.new(self).notify
+          Thread.new { Notifyme::Events::Issue::Update.new(self).notify }
         end
       end
     end
