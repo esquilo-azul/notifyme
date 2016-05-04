@@ -8,9 +8,15 @@ module Notifyme
         include CustomFieldsHelper
 
         def notify
-          Notifyme::TelegramBot::Bot.new.send_html_photo(html)
-        rescue => ex
-          Rails.logger.warn(ex)
+          previous_locale = I18n.locale
+          begin
+            I18n.locale = Setting.default_language
+            Notifyme::TelegramBot::Bot.new.send_html_photo(html)
+          rescue => ex
+            Rails.logger.warn(ex)
+          ensure
+            I18n.locale = previous_locale
+          end
         end
 
         def html
