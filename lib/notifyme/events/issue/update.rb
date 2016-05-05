@@ -2,10 +2,13 @@ module Notifyme
   module Events
     module Issue
       class Update < Base
-        attr_reader :journal
+        def journal
+          @event.data
+        end
 
-        def initialize(journal)
-          @journal = journal
+        def run
+          return unless Notifyme::Settings.issue_update_event_notify
+          super
         end
 
         def issue

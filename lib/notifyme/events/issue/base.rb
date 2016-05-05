@@ -7,25 +7,21 @@ module Notifyme
         include IssuesHelper
         include CustomFieldsHelper
 
-        def notify
-          previous_locale = I18n.locale
-          begin
-            I18n.locale = Setting.default_language
-            Notifyme::TelegramBot::Bot.new.send_html_photo(html)
-          rescue => ex
-            Rails.logger.warn(ex)
-          ensure
-            I18n.locale = previous_locale
-          end
+        def initialize(event)
+          @event = event
         end
+
+        def run
+          Notifyme::TelegramBot::Bot.new.send_html_photo(html)
+        end
+
+        private
 
         def html
           s = ''
           ERB.new(template_content, 0, '', 's').result(binding)
           s
         end
-
-        private
 
         def link_to(label, *_args)
           HTMLEntities.new.encode(label, :named)

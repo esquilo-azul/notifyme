@@ -3,12 +3,16 @@ namespace :notifyme do
     namespace :issue do
       desc 'Envia notificações da criação de um Issue'
       task :create, [:issue_id] => :environment do |_t, args|
-        Notifyme::Events::Issue::Create.new(Issue.find(args.issue_id)).notify
+        Notifyme::Events::Issue::Create.new(
+          EacBase::Event.new(Issue, :create, Issue.find(args.issue_id))
+        ).run
       end
 
       desc 'Envia notificações da alteração de um Issue'
       task :update, [:journal_id] => :environment do |_t, args|
-        Notifyme::Events::Issue::Update.new(Journal.find(args.journal_id)).notify
+        Notifyme::Events::Issue::Update.new(
+          EacBase::Event.new(Issue, :update, Journal.find(args.journal_id))
+        ).run
       end
     end
   end

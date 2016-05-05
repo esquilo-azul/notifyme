@@ -2,10 +2,17 @@ module Notifyme
   module Events
     module Issue
       class Create < Base
-        attr_reader :issue
+        def initialize(event)
+          @event = event
+        end
 
-        def initialize(issue)
-          @issue = issue
+        def issue
+          @event.data
+        end
+
+        def run
+          return unless Notifyme::Settings.issue_create_event_notify
+          super
         end
 
         def date
