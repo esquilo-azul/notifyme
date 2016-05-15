@@ -2,7 +2,6 @@
   <label>ID do bot Telegram</label>
   <%= text_field_tag 'settings[telegram_bot_default_chat_id]', settings['telegram_bot_default_chat_id'] %>
 </p>
-
 <p>
   <label>Chat padrão para envio de mensagens Telegram</label>
   <select name="settings[telegram_default_chat_id]">
@@ -11,13 +10,10 @@
       settings['telegram_default_chat_id'] ) %>
   </select>
 </p>
-
 <p>
   <label>Notificações de criação de tarefa:</label>
   <%= check_box_tag('settings[issue_create_event_notify]', true, settings['issue_create_event_notify']) %>
 </p>
-
-
 <p>
   <label>Notificações de atualização de tarefa:</label>
   <%= check_box_tag('settings[issue_update_event_notify]', true, settings['issue_update_event_notify']) %>
