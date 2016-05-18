@@ -8,4 +8,12 @@ class RepositoryBranch < ActiveRecord::Base
   def to_s
     "[#{repository.type}|#{repository.url}|#{name}]"
   end
+
+  def to_redmine_git_hosting
+    b = Redmine::Scm::Adapters::XitoliteAdapter::GitBranch.new(name)
+    b.revision = revision
+    b.scmid = revision
+    b.is_default = false
+    b
+  end
 end

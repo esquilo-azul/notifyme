@@ -1,7 +1,9 @@
 module Notifyme
   module Git
     class Repository
+      include OldNewBranches
       include Reset
+      include Notify
       attr_reader :repository
 
       def initialize(repository)

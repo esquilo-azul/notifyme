@@ -2,6 +2,8 @@
 
 require 'redmine'
 
+require 'notifyme/patches/repository_patch'
+
 Redmine::Plugin.register :notifyme do
   name 'Notify me'
   author 'Eduardo Henrique Bogoni'
