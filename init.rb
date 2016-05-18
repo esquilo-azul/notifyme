@@ -21,4 +21,5 @@ end
 Rails.configuration.to_prepare do
   EacBase::EventManager.add_listener(Issue, :create, 'Notifyme::Events::Issue::Create')
   EacBase::EventManager.add_listener(Issue, :update, 'Notifyme::Events::Issue::Update')
+  EacBase::EventManager.add_listener(Repository, :receive, 'Notifyme::Events::Repository::Receive')
 end
