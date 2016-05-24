@@ -23,6 +23,15 @@ namespace :notifyme do
           EacBase::Event.new(TimeEntry, :create, TimeEntry.find(args.time_entry_id))
         ).run
       end
+
+      desc 'Envia notificações da remoção de um TimeEntry'
+      task :delete, [:time_entry_id] => :environment do |_t, args|
+        Notifyme::Events::TimeEntry::Delete.new(
+          EacBase::Event.new(
+            TimeEntry, :delete, EacBase::RemovedRecord.new(TimeEntry.find(args.time_entry_id))
+          )
+        ).run
+      end
     end
   end
 end

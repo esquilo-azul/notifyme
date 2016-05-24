@@ -3,7 +3,4 @@
   <%= author %>
 </div>
 <div class="title"><%= time_entry.issue %></div>
-<div class="hours">
-  <%= time_entry.activity %>:
-  <span class="hours_add">+<%= l_hours(time_entry.hours) %></span>
-</div>
+<div class="hours"><%= time_entry.activity %>: <%= hours_added_text %></div>

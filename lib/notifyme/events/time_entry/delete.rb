@@ -1,15 +1,15 @@
 module Notifyme
   module Events
     module TimeEntry
-      class Create < Base
+      class Delete < Base
         private
 
         def time_entry
-          @event.data
+          @time_entry ||= @event.data.copy_record
         end
 
         def hours_added
-          [{ add: true, hours: time_entry.hours }]
+          [{ add: false, hours: time_entry.hours }]
         end
       end
     end
