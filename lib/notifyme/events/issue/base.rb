@@ -2,8 +2,7 @@ module Notifyme
   module Events
     module Issue
       class Base
-        include ApplicationHelper
-        include ActionView::Helpers::TagHelper
+        include Notifyme::Html::Base
         include IssuesHelper
         include CustomFieldsHelper
 
@@ -17,18 +16,8 @@ module Notifyme
 
         private
 
-        def html
-          s = ''
-          ERB.new(template_content, 0, '', 's').result(binding)
-          s
-        end
-
-        def link_to(label, *_args)
-          HTMLEntities.new.encode(label, :named)
-        end
-
-        def template_content
-          File.read(File.expand_path('../base.html.erb', __FILE__))
+        def template_file
+          File.expand_path('../base.html.erb', __FILE__)
         end
 
         def title
