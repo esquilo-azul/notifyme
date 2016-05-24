@@ -15,5 +15,14 @@ namespace :notifyme do
         ).run
       end
     end
+
+    namespace :time_entry do
+      desc 'Envia notificações da criação de um TimeEntry'
+      task :create, [:time_entry_id] => :environment do |_t, args|
+        Notifyme::Events::TimeEntry::Create.new(
+          EacBase::Event.new(TimeEntry, :create, TimeEntry.find(args.time_entry_id))
+        ).run
+      end
+    end
   end
 end

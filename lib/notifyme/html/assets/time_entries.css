@@ -1,0 +1,15 @@
+.hours, .hours * {
+  font-size: 14pt;
+}
+
+.hours_add {
+  color: #070;
+}
+
+.total {
+  font-size: 10pt;
+}
+
+label {
+  font-weight: bold;
+}
