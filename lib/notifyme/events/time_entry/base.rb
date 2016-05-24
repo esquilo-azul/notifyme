@@ -3,6 +3,7 @@ module Notifyme
     module TimeEntry
       class Base
         include Notifyme::Html::Base
+        include ByActivity
         include ActionView::Helpers::NumberHelper
 
         def initialize(event)
