@@ -31,7 +31,8 @@ module Notifyme
 
           def subjects
             { issue: "##{time_entry.issue.id}",
-              user_issue: "##{time_entry.issue.id} && #{time_entry.user.firstname}" }
+              user_issue: "##{time_entry.issue.id} && #{time_entry.user.firstname}",
+              user: "#{time_entry.user.firstname} (24hs)" }
           end
 
           def subject_row(k, v)
@@ -57,6 +58,12 @@ module Notifyme
 
           def subject_hours_user_issue(a)
             ::TimeEntry.where(user: time_entry.user, issue: time_entry.issue, activity: a)
+                       .sum(:hours)
+          end
+
+          def subject_hours_user(a)
+            ::TimeEntry.where(user: time_entry.user, activity: a)
+                       .where('created_on > ?', 24.hours.ago)
                        .sum(:hours)
           end
 
