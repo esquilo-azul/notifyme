@@ -24,10 +24,6 @@ module Notifyme
           HTMLEntities.new.encode("#{issue.tracker.name} ##{issue.id}: #{issue.subject}", :named)
         end
 
-        def date
-          issue.created_on.getlocal.strftime('%d/%m/%y %H:%M:%S')
-        end
-
         def author
           issue.author
         end
