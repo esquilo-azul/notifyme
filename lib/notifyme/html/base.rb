@@ -35,6 +35,10 @@ module Notifyme
       def css_content(css_file)
         "<style>\n#{Notifyme::Utils::HtmlEncode.encode(File.read(css_file))}</style>\n"
       end
+
+      def download_named_attachment_url(_attachment, name, _options = {})
+        Notifyme::Utils::HtmlEncode.encode(link_to(name))
+      end
     end
   end
 end
