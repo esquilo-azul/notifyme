@@ -3,6 +3,10 @@
   <%= text_field_tag 'settings[telegram_bot_default_chat_id]', settings['telegram_bot_default_chat_id'] %>
 </p>
 <p>
+  <label>Nome do bot Telegram</label>
+  <%= text_field_tag 'settings[telegram_bot_name]', settings['telegram_bot_name'] %>
+</p>
+<p>
   <label>Chat padrão para envio de mensagens Telegram</label>
   <select name="settings[telegram_default_chat_id]">
     <%= options_for_select([['-- NENHUM --', '']] + 

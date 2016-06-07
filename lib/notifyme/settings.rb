@@ -6,6 +6,10 @@ module Notifyme
       Setting.plugin_notifyme['telegram_bot_default_chat_id']
     end
 
+    def self.telegram_bot_name
+      Setting.plugin_notifyme[__method__]
+    end
+
     def self.telegram_default_chat_id
       Setting.plugin_notifyme[__method__]
     end
