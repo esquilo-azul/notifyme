@@ -8,6 +8,7 @@ module Notifyme
           bot.listen do |message|
             Rails.logger.debug message.inspect
             add_or_update_chat(message.chat)
+            CommandFactory.process_message(bot, message)
           end
         end
       end
