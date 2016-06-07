@@ -3,6 +3,8 @@
 require 'redmine'
 
 require 'notifyme/patches/repository_patch'
+require_dependency 'notifyme/hooks/add_my_telegram_link'
+require_dependency 'notifyme/hooks/add_assets'
 
 Redmine::Plugin.register :notifyme do
   name 'Notify me'
