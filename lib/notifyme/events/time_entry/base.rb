@@ -11,7 +11,7 @@ module Notifyme
         end
 
         def run
-          Notifyme::TelegramBot::Bot.new.send_html_photo(html)
+          Notifyme::Notify.telegram(html)
         end
 
         private

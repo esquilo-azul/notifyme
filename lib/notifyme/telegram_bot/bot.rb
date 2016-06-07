@@ -26,8 +26,26 @@ module Notifyme
         end
       end
 
+      def send_photo_by_file_id(file_id, chat_id = nil)
+        run do |bot|
+          bot.api.sendPhoto(chat_id: Settings.telegram_chat_id(chat_id), photo: file_id)
+        end
+      end
+
       def send_html_photo(html, chat_id = nil)
         send_photo(html_to_image_file(html), chat_id)
+      end
+
+      def send_html_photo_multiple_chat(html, chat_ids)
+        file_id = nil
+        chat_ids.each do |chat_id|
+          if file_id
+            send_photo_by_file_id(file_id, chat_id)
+          else
+            r = send_html_photo(html, chat_id)
+            file_id = r['result']['photo'][-1]['file_id'] if r['ok']
+          end
+        end
       end
 
       def html_to_image_file(html)

@@ -11,17 +11,11 @@ module Notifyme
           old_new_branches.each do |onb|
             if onb.change?
               Rails.logger.debug("#{onb}: changed")
-              bot.send_html_photo(onb.html_graph)
+              Notifyme::Notify.telegram(onb.html_graph)
             else
               Rails.logger.debug("#{onb}: not changed")
             end
           end
-        end
-
-        private
-
-        def bot
-          @bot ||= Notifyme::TelegramBot::Bot.new
         end
       end
     end
