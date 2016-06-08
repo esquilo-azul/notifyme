@@ -39,6 +39,10 @@ module Notifyme
       def download_named_attachment_url(_attachment, name, _options = {})
         Notifyme::Utils::HtmlEncode.encode(link_to(name))
       end
+
+      def url_for(*_args)
+        ''
+      end
     end
   end
 end
