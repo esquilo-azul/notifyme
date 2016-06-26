@@ -43,6 +43,10 @@ module Notifyme
       def url_for(*_args)
         ''
       end
+
+      def issue_url(issue, _options = {})
+        link_to("\##{issue.id}")
+      end
     end
   end
 end
