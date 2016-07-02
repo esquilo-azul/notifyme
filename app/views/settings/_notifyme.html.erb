@@ -7,14 +7,6 @@
   <%= text_field_tag 'settings[telegram_bot_name]', settings['telegram_bot_name'] %>
 </p>
 <p>
-  <label>Chat padrão para envio de mensagens Telegram</label>
-  <select name="settings[telegram_default_chat_id]">
-    <%= options_for_select([['-- NENHUM --', '']] + 
-      TelegramChat.order(chat_name: :asc).collect {|p| [ p.to_s, p.chat_id ] },
-      settings['telegram_default_chat_id'] ) %>
-  </select>
-</p>
-<p>
   <label>Notificações de criação de tarefa:</label>
   <%= check_box_tag('settings[issue_create_event_notify]', true, settings['issue_create_event_notify']) %>
 </p>

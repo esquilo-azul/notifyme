@@ -9,11 +9,11 @@ module Notifyme
         end
       end
 
-      def send_message(messages, chat_id = nil)
+      def send_message(messages, chat_id)
         messages = [messages] unless messages.is_a?(Array)
         run do |bot|
           messages.each do |message|
-            bot.api.sendMessage(chat_id: Settings.telegram_chat_id(chat_id), text: message)
+            bot.api.sendMessage(chat_id: chat_id, text: message)
           end
         end
       end
@@ -24,17 +24,17 @@ module Notifyme
         end
       end
 
-      def send_photo(photo, chat_id = nil)
+      def send_photo(photo, chat_id)
         photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
         photo.is_a?(Faraday::UploadIO)
         run do |bot|
-          bot.api.sendPhoto(chat_id: Settings.telegram_chat_id(chat_id), photo: photo)
+          bot.api.sendPhoto(chat_id: chat_id, photo: photo)
         end
       end
 
-      def send_photo_by_file_id(file_id, chat_id = nil)
+      def send_photo_by_file_id(file_id, chat_id)
         run do |bot|
-          bot.api.sendPhoto(chat_id: Settings.telegram_chat_id(chat_id), photo: file_id)
+          bot.api.sendPhoto(chat_id: chat_id, photo: file_id)
         end
       end
 
