@@ -5,6 +5,10 @@ module Notifyme
         Notifyme::TelegramBot::Bot.new.send_html_photo_multiple_chat(html, chat_ids)
       end
 
+      def telegram_message(text)
+        Notifyme::TelegramBot::Bot.new.send_message_multiple_chat(text, chat_ids)
+      end
+
       private
 
       def chat_ids

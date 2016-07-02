@@ -18,6 +18,12 @@ module Notifyme
         end
       end
 
+      def send_message_multiple_chat(messages, chat_ids)
+        chat_ids.each do |chat_id|
+          send_message(messages, chat_id)
+        end
+      end
+
       def send_photo(photo, chat_id = nil)
         photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
         photo.is_a?(Faraday::UploadIO)
