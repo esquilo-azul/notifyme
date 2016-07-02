@@ -1,7 +1,7 @@
 module Notifyme
   class Notify
     class << self
-      def telegram(html)
+      def telegram_html(html)
         Notifyme::TelegramBot::Bot.new.send_html_photo_multiple_chat(html, chat_ids)
       end
 

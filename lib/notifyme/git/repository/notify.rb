@@ -11,7 +11,7 @@ module Notifyme
           old_new_branches.each do |onb|
             if onb.change?
               Rails.logger.debug("#{onb}: changed")
-              Notifyme::Notify.telegram(onb.html_graph)
+              Notifyme::Notify.telegram_html(onb.html_graph)
             else
               Rails.logger.debug("#{onb}: not changed")
             end

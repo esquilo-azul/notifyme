@@ -22,7 +22,7 @@ namespace :notifyme do
 
     desc 'Converte um HTML para imagem e envia para todos os chats vinculados'
     task :notify_html, [:html] => :environment do |_t, args|
-      Notifyme::Notify.telegram(args.html)
+      Notifyme::Notify.telegram_html(args.html)
     end
   end
 end

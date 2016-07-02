@@ -11,7 +11,7 @@ module Notifyme
         end
 
         def run
-          Notifyme::Notify.telegram(html)
+          Notifyme::Notify.telegram_html(html)
         end
 
         private
