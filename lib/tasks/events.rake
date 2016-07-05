@@ -28,7 +28,7 @@ namespace :notifyme do
       task :delete, [:time_entry_id] => :environment do |_t, args|
         Notifyme::Events::TimeEntry::Delete.new(
           EventsManager::Event.new(
-            TimeEntry, :delete, EacBase::RemovedRecord.new(TimeEntry.find(args.time_entry_id))
+            TimeEntry, :delete, EventsManager::RemovedRecord.new(TimeEntry.find(args.time_entry_id))
           )
         ).run
       end
