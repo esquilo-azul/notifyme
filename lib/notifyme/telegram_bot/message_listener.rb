@@ -4,7 +4,7 @@ module Notifyme
   module TelegramBot
     class MessageListener
       def run
-        Bot.new.run do |bot|
+        Bot.run do |bot|
           bot.listen do |message|
             Rails.logger.debug message.inspect
             add_or_update_chat(message.chat)
