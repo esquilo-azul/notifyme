@@ -24,20 +24,6 @@ module Notifyme
         end
       end
 
-      def send_photo(photo, chat_id)
-        photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
-        photo.is_a?(Faraday::UploadIO)
-        run do |bot|
-          bot.api.sendPhoto(chat_id: chat_id, photo: photo)
-        end
-      end
-
-      def send_photo_by_file_id(file_id, chat_id)
-        run do |bot|
-          bot.api.sendPhoto(chat_id: chat_id, photo: file_id)
-        end
-      end
-
       def send_html_photo(html, chat_id = nil)
         send_photo(html_to_image_file(html), chat_id)
       end
@@ -51,6 +37,22 @@ module Notifyme
             r = send_html_photo(html, chat_id)
             file_id = r['result']['photo'][-1]['file_id'] if r['ok']
           end
+        end
+      end
+
+      private
+
+      def send_photo(photo, chat_id)
+        photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
+        photo.is_a?(Faraday::UploadIO)
+        run do |bot|
+          bot.api.sendPhoto(chat_id: chat_id, photo: photo)
+        end
+      end
+
+      def send_photo_by_file_id(file_id, chat_id)
+        run do |bot|
+          bot.api.sendPhoto(chat_id: chat_id, photo: file_id)
         end
       end
 
