@@ -10,26 +10,27 @@ module Notifyme
           end
         end
 
-        def send_message(messages, chat_id)
-          messages = [messages] unless messages.is_a?(Array)
+        def send_message(content_type, content, chat_ids)
+          if content_type == :plain
+            send_plain(content, chat_ids)
+          elsif content_type == :html
+            send_html(content, chat_ids)
+          else
+            raise "Unknown content type: \"#{data[:content_type]}\""
+          end
+        end
+
+        private
+
+        def send_plain(plain_text, chat_ids)
           run do |bot|
-            messages.each do |message|
-              bot.api.sendMessage(chat_id: chat_id, text: message)
+            chat_ids.each do |chat_id|
+              bot.api.sendMessage(chat_id: chat_id, text: plain_text)
             end
           end
         end
 
-        def send_message_multiple_chat(messages, chat_ids)
-          chat_ids.each do |chat_id|
-            send_message(messages, chat_id)
-          end
-        end
-
-        def send_html_photo(html, chat_id = nil)
-          send_photo(html_to_image_file(html), chat_id)
-        end
-
-        def send_html_photo_multiple_chat(html, chat_ids)
+        def send_html(html, chat_ids)
           file_id = nil
           chat_ids.each do |chat_id|
             if file_id
@@ -41,7 +42,9 @@ module Notifyme
           end
         end
 
-        private
+        def send_html_photo(html, chat_id = nil)
+          send_photo(html_to_image_file(html), chat_id)
+        end
 
         def send_photo(photo, chat_id)
           photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
