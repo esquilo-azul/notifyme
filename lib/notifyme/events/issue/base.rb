@@ -13,7 +13,7 @@ module Notifyme
         end
 
         def run
-          Notifyme::Notify.notify(content_type: :html, content: html)
+          Notifyme::Notify.notify(content_type: :html, content: html, author: author)
         end
 
         private
