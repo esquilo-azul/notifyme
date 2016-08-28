@@ -5,6 +5,8 @@ module Notifyme
         include Notifyme::Html::Base
         include IssuesHelper
         include CustomFieldsHelper
+        include ActionView::Helpers::SanitizeHelper
+        include Redmine::I18n
 
         def initialize(event)
           @event = event
