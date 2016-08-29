@@ -1,7 +1,7 @@
 module Notifyme
   module Git
     class HtmlBranchesGraph
-      attr_reader :repository, :branches
+      attr_reader :repository
 
       SEPARATOR = '@@@'.freeze
       LOG_FORMAT = %w(H h an ai s).freeze
@@ -39,7 +39,7 @@ module Notifyme
         base = branches_merge_base
         base = base.blank? ? '' : "#{base[0, 8]}.."
         s = ['--no-pager', 'log', '--graph', "--pretty=format:#{log_format}"]
-        @branches.each { |b| s << "#{base}#{b[:branch]}" }
+        branches.each { |b| s << "#{base}#{b[:branch]}" }
         s
       end
 
@@ -54,10 +54,14 @@ module Notifyme
       end
 
       def branches_merge_base
-        commits = @branches.map { |b| b[:branch].to_s }
+        commits = branches.map { |b| b[:branch].to_s }
         base = Commands.merge_base(repository, *commits)
         return nil if base.blank?
         Commands.parents(repository, base).first
+      end
+
+      def branches
+        @branches.select { |b| repository.commit_exist?(b[:branch].to_s) }
       end
     end
   end

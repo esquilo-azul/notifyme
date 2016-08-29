@@ -21,6 +21,18 @@ module Notifyme
           s
         end
 
+        def git_cmd_no_raise(args)
+          git_cmd(args)
+        rescue Redmine::Scm::Adapters::AbstractAdapter::ScmCommandAborted
+          nil
+        end
+
+        def commit_exist?(commit)
+          s = git_cmd_no_raise(['cat-file', '-t', commit])
+          s.strip! if s.is_a?(String)
+          s == 'commit'
+        end
+
         private
 
         def check_git_repository
