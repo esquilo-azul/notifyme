@@ -17,7 +17,8 @@ module Notifyme
       end
 
       def issue_title(issue)
-        content_tag(:div, issue, class: 'title')
+        content_tag(:div, project_path(issue.project), class: 'project') <<
+          content_tag(:div, issue, class: 'title')
       end
 
       def link_to(label, *_args)
@@ -50,6 +51,24 @@ module Notifyme
 
       def issue_url(issue, _options = {})
         link_to("\##{issue.id}")
+      end
+
+      def project_path(project)
+        b = project_ancestors_path(project.ancestors.visible.to_a)
+        b << project
+        b.join(" \xc2\xbb ").html_safe
+      end
+
+      def project_ancestors_path(ancestors)
+        return [] if ancestors.empty?
+        b = []
+        root = ancestors.shift
+        b << root
+        if ancestors.size > 2
+          b << "\xe2\x80\xa6"
+          ancestors = ancestors[-2, 2]
+        end
+        b + ancestors
       end
     end
   end

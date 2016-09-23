@@ -3,6 +3,17 @@
   font-size: 12pt
 }
 
+.project {
+  margin: 3px 0px;
+  color: white;
+  background-color: darkgreen;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 3px;
+  font-size: 10pt;
+  border-radius: 5px;
+}
+
 .date {
   font-weight: bold;
 }
