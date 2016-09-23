@@ -16,6 +16,10 @@ module Notifyme
         Notifyme::Utils::HtmlEncode.encode(s)
       end
 
+      def issue_title(issue)
+        content_tag(:div, issue, class: 'title')
+      end
+
       def link_to(label, *_args)
         HTMLEntities.new.encode(label, :named)
       end

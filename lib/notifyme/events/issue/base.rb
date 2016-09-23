@@ -22,10 +22,6 @@ module Notifyme
           File.expand_path('../base.html.erb', __FILE__)
         end
 
-        def title
-          HTMLEntities.new.encode("#{issue.tracker.name} ##{issue.id}: #{issue.subject}", :named)
-        end
-
         def author
           issue.author
         end
