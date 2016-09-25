@@ -10,7 +10,7 @@ module Notifyme
 
         def run
           return unless receive_git?
-          Notifyme::Git::Repository.new(repository).notify(true)
+          ::Notifyme::Git::Repository.new(repository).notify(true)
         end
 
         private
