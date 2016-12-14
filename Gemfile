@@ -12,4 +12,4 @@ gem 'imgkit'
 
 # Codificação HTML
 # https://github.com/threedaymonk/htmlentities
-gem 'htmlentities', '~> 4.3.4'
+gem 'htmlentities'
