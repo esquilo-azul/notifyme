@@ -16,7 +16,7 @@ module Notifyme
       private
 
       def add_or_update_chat(chat)
-        c = TelegramChat.find_by_chat_id(chat.id)
+        c = TelegramChat.find_by(chat_id: chat.id)
         c = TelegramChat.new(chat_id: chat.id) unless c
         c.chat_name = chat_name(chat)
         c.chat_type = chat.type

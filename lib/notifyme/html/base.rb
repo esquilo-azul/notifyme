@@ -56,7 +56,7 @@ module Notifyme
       def project_path(project)
         b = project_ancestors_path(project.ancestors.visible.to_a)
         b << project
-        b.join(" \xc2\xbb ").html_safe
+        safe_join(b, " \xc2\xbb ")
       end
 
       def project_ancestors_path(ancestors)

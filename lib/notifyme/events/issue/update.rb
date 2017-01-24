@@ -31,7 +31,7 @@ module Notifyme
 
         def attributes
           Notifyme::Utils::HtmlEncode.encode(
-            content_tag('ul', details_items.join("\n").html_safe).to_s
+            content_tag('ul', safe_join(detail_items, "\n")).to_s
           )
         end
 

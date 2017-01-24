@@ -23,8 +23,7 @@ module Notifyme
 
         def branches_to_graph
           bs = [{ branch: old_rev, label: 'Antigo', abbreviation: 'A', status: -1 },
-                { branch: new_rev, label: 'Novo', abbreviation: 'N', status: 1 }
-          ]
+                { branch: new_rev, label: 'Novo', abbreviation: 'N', status: 1 }]
           if branch_name != 'master'
             bs << { branch: branch_master, label: 'Master', abbreviation: 'M', status: 0 }
           end

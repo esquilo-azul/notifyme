@@ -18,7 +18,7 @@ module Notifyme
 
         def telegram_chat
           @telegram_chat ||= begin
-            tc = TelegramChat.find_by_chat_id(message.chat.id)
+            tc = TelegramChat.find_by(chat_id: message.chat.id)
             raise "Chat telegram não encontrado com o CHAT_ID=#{message.chat.id}" unless tc
             tc
           end
@@ -29,7 +29,7 @@ module Notifyme
         end
 
         def send_no_user
-          bot.api.sendMessage(chat_id: message.chat.id, text: "Este chat não é de usuário")
+          bot.api.sendMessage(chat_id: message.chat.id, text: 'Este chat não é de usuário')
         end
 
         def send_no_user_found
