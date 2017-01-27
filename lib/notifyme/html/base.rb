@@ -3,6 +3,15 @@ module Notifyme
     module Base
       include ApplicationHelper
       include ActionView::Helpers::TagHelper
+      extend ActiveSupport::Concern
+
+      included do
+        include Rails.application.routes.url_helpers
+      end
+
+      def default_url_options
+        { host: 'localhost' }
+      end
 
       def html
         assets_content << template_content
