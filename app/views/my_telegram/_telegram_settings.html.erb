@@ -1,7 +1,31 @@
 <%= labelled_form_for @pref, url: my_telegram_path, method: :put do |f| %>
-  <fieldset class="box tabular">
+  <fieldset class="box">
     <legend><%= l(:label_user_telegram_settings)%></legend>
     <%= error_messages_for @pref %>
+    <p>
+      <%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>
+      <%= f.select(
+        :filter,
+        user_mail_notification_options(@user),
+        { no_label: true },
+        {onchange: 'if (this.value == "selected") {$("#notified-projects").show();} else {$("#notified-projects").hide();}' }
+        ) %>
+    </p>
+    <% projects_key = "#{::UserTelegramPreference.model_name.param_key}[filter_project_ids][]" %>
+    <%= content_tag 'div', :id => 'notified-projects', :style => (@pref.filter == 'selected' ? '' : 'display:none;') do %>
+      <%= render_project_nested_lists(@user.projects) do |project|
+        content_tag('label', 
+          check_box_tag(
+            projects_key,
+            project.id,
+            @pref.filter_project_ids.include?(project.id),
+            :id => nil
+            ) + ' ' + h(project.name)
+        )
+        end %>
+      <%= hidden_field_tag projects_key, '' %>
+      <p><em class="info"><%= l(:text_user_mail_option) %></em></p>
+    <% end %>
     <p>
       <%= f.check_box :no_self_notified, label: l(:label_user_mail_no_self_notified) %>
     </p>
