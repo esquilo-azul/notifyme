@@ -11,7 +11,8 @@ module Notifyme
         end
 
         def run
-          Notifyme::Notify.notify(content_type: :html, content: html, author: author)
+          Notifyme::Notify.notify(content_type: :html, content: html, author: author,
+                                  source: time_entry.issue)
         end
 
         private

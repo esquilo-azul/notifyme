@@ -11,7 +11,7 @@ Redmine::Plugin.register :notifyme do
   name 'Notify me'
   author 'Eduardo Henrique Bogoni'
   description 'Notificações'
-  version '0.1.0'
+  version '0.1.1'
 
   settings(default: {}, partial: 'settings/notifyme')
 

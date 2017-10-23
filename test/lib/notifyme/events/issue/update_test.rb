@@ -4,7 +4,7 @@ module Notifyme
   module Events
     module Issue
       class UpdateTest < ActiveSupport::TestCase
-        fixtures :issues, :issue_relations, :issue_statuses, :projects, :trackers, :users
+        fixtures :issues, :issue_relations, :issue_statuses, :projects, :trackers, :users, :members
 
         setup do
           Setting.plugin_notifyme = Setting.plugin_notifyme.merge(issue_update_event_notify: true)

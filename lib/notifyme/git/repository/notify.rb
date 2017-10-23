@@ -11,7 +11,8 @@ module Notifyme
           old_new_branches.each do |onb|
             if onb.change?
               Rails.logger.debug("#{onb}: changed")
-              Notifyme::Notify.notify(content_type: :html, content: onb.html_graph, author: nil)
+              Notifyme::Notify.notify(content_type: :html, content: onb.html_graph, author: nil,
+                                      source: repository.project)
             else
               Rails.logger.debug("#{onb}: not changed")
             end

@@ -1,11 +1,10 @@
 require 'test_helper'
 
 class MyTelegramControllerTest < ActionController::TestCase
-  fixtures :users
+  fixtures :users, :projects
 
-  def setup
-    User.current = nil
-    @request.session[:user_id] = 1 # admin
+  setup do
+    @controller.logged_user = ::User.find(1) # admin
   end
 
   def test_index
@@ -17,16 +16,22 @@ class MyTelegramControllerTest < ActionController::TestCase
   end
 
   def test_update
-    assert_equal false, User.current.telegram_pref.no_self_notified
-    assert_update_no_self_notified('1', true)
-    assert_update_no_self_notified('0', false)
+    [false, true].each do |no_self_notified|
+      ::User::MAIL_NOTIFICATION_OPTIONS.map(&:first).each do |filter|
+        [[], [::Project.first.id]].each do |filter_project_ids|
+          assert_update_filter(no_self_notified, filter, filter_project_ids)
+        end
+      end
+    end
   end
 
-  private
-
-  def assert_update_no_self_notified(input_value, expected_value)
-    put :update, user_telegram_preference: { no_self_notified: input_value }
+  def assert_update_filter(no_self_notified, filter, filter_project_ids)
+    put :update, user_telegram_preference: { no_self_notified: no_self_notified ? '1' : '0',
+                                             filter: filter,
+                                             filter_project_ids: filter_project_ids }
     assert_redirected_to '/my/telegram'
-    assert_equal expected_value, User.current.telegram_pref.no_self_notified
+    assert_equal no_self_notified, User.current.telegram_pref.no_self_notified
+    assert_equal filter, User.current.telegram_pref.filter
+    assert_equal filter_project_ids, User.current.telegram_pref.filter_project_ids
   end
 end
