@@ -14,10 +14,5 @@ namespace :notifyme do
     task :send_html, [:html, :chat_id] => :environment do |_t, args|
       Notifyme::TelegramBot::Bot.send_message(:html, args.html, [args.chat_id])
     end
-
-    desc 'Converte um HTML para imagem e envia para todos os chats vinculados'
-    task :notify_html, [:html] => :environment do |_t, args|
-      Notifyme::Notify.notify(content_type: :html, content: args.html, author: nil)
-    end
   end
 end
