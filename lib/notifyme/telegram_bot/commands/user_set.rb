@@ -23,7 +23,7 @@ module Notifyme
         end
 
         def user
-          @user ||= User.find_by(api_key: api_key)
+          @user ||= User.find_by_api_key(api_key) # rubocop:disable Rails/DynamicFindBy
         end
 
         def telegram_chat
