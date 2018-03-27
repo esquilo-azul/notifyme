@@ -14,7 +14,7 @@
     <% projects_key = "#{::UserTelegramPreference.model_name.param_key}[filter_project_ids][]" %>
     <%= content_tag 'div', :id => 'notified-projects', :style => (@pref.filter == 'selected' ? '' : 'display:none;') do %>
       <%= render_project_nested_lists(@user.projects) do |project|
-        content_tag('label', 
+        content_tag('label',
           check_box_tag(
             projects_key,
             project.id,
