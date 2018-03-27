@@ -21,6 +21,9 @@ module Notifyme
 
         def merge_base_pair(repository, c1, c2)
           repository.git_cmd(['merge-base', c1, c2]).strip
+        rescue Redmine::Scm::Adapters::AbstractAdapter::ScmCommandAborted => ex
+          return nil if ex.message.start_with?('Git exited with non-zero status : 1')
+          raise ex
         end
 
         def parents(repository, commit)
