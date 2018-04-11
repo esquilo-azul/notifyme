@@ -5,7 +5,9 @@ class UserTelegramPreference
 
   attr_accessor :user
 
-  validates :filter, presence: true, inclusion: { in: ::User::MAIL_NOTIFICATION_OPTIONS.map { |v| v[0] } }
+  validates :filter, presence: true, inclusion: {
+    in: ::User::MAIL_NOTIFICATION_OPTIONS.map { |v| v[0] }
+  }
 
   def save
     user.pref[:telegram] = Hash[PREFS.map { |k| [k, send(k)] }]
@@ -39,8 +41,15 @@ class UserTelegramPreference
   private
 
   def telegram_pref_get(name, default_value)
-    return data[name] unless data[name].nil?
-    user.pref[:telegram] && user.pref[:telegram][name] ? user.pref[:telegram][name] : default_value
+    data[name].nil? ? telegram_user_pref_get(name, default_value) : data[name]
+  end
+
+  def telegram_user_pref_get(name, default_value)
+    if user.pref[:telegram] && user.pref[:telegram][name]
+      user.pref[:telegram][name]
+    else
+      default_value
+    end
   end
 
   def telegram_pref_set(name, value)
