@@ -24,8 +24,10 @@ class MyTelegramController < ApplicationController
   end
 
   def pref_params
-    params[::UserTelegramPreference.model_name.param_key]
-      .permit(:no_self_notified, :issues, issues_project_ids: [])
-      .merge(user: @user)
+    r = params[::UserTelegramPreference.model_name.param_key]
+        .permit(:no_self_notified, :issues, issues_project_ids: [])
+        .merge(user: @user)
+    r[:issues_project_ids] ||= []
+    r
   end
 end

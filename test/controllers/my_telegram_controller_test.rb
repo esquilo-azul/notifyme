@@ -1,37 +1,70 @@
 require 'test_helper'
 
-class MyTelegramControllerTest < ActionController::TestCase
+class MyTelegramControllerTest < Redmine::IntegrationTest
   fixtures :users, :projects
 
   setup do
-    @controller.logged_user = ::User.find(1) # admin
+    log_user('jsmith', 'jsmith')
   end
 
   def test_index
-    get :index
-    assert_response :success
+    get '/my/telegram'
+    assert_on_index
+  end
+
+  def test_update
+    all_put_combinations(put_combinations).each do |data|
+      assert_update(data)
+    end
+  end
+
+  private
+
+  def put_combinations
+    [
+      [:no_self_notified, [false, true]],
+      [:issues, ::UserTelegramPreference.issues_values],
+      [:issues_project_ids, [[], [::Project.first.id]]]
+    ]
+  end
+
+  def all_put_combinations(left)
+    x = left.pop
+    return [] unless x
+    self_combs = x.last.map { |v| { x.first => v } }
+    sub_combs = all_put_combinations(left)
+    return self_combs unless sub_combs.any?
+    r = []
+    sub_combs.each do |sub_comb|
+      self_combs.each do |self_comb|
+        r << sub_comb.merge(self_comb)
+      end
+    end
+    r
+  end
+
+  def assert_update(data)
+    put '/my/telegram', user_telegram_preference: params_to_put(data)
+    assert_redirected_to '/my/telegram'
+    assert_user_updated(data)
+    follow_redirect!
+  end
+
+  def assert_on_index
     assert_template 'index'
     assert_not_nil assigns(:chats)
     assert_not_nil assigns(:pref)
   end
 
-  def test_update
-    [false, true].each do |no_self_notified|
-      issues_values.each do |issues|
-        [[], [::Project.first.id]].each do |issues_project_ids|
-          assert_update_issues(no_self_notified, issues, issues_project_ids)
-        end
-      end
-    end
+  def params_to_put(data)
+    r = data.dup
+    r[:no_self_notified] = r[:no_self_notified] ? '1' : '0'
+    r
   end
 
-  def assert_update_issues(no_self_notified, issues, issues_project_ids)
-    put :update, user_telegram_preference: { no_self_notified: no_self_notified ? '1' : '0',
-                                             issues: issues,
-                                             issues_project_ids: issues_project_ids }
-    assert_redirected_to '/my/telegram'
-    assert_equal no_self_notified, User.current.telegram_pref.no_self_notified
-    assert_equal issues, User.current.telegram_pref.issues
-    assert_equal issues_project_ids, User.current.telegram_pref.issues_project_ids
+  def assert_user_updated(data)
+    data.each do |key, expected|
+      assert_equal expected, User.current.telegram_pref.send(key), key
+    end
   end
 end
