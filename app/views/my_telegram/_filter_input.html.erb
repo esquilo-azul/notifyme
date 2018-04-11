@@ -5,6 +5,7 @@ projects_key = "#{::UserTelegramPreference.model_name.param_key}[#{field}_projec
 %>
 <p>
   <%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>
+  <label><%= t("field_#{field}") %></label>
   <%= f.select(field, @pref.send("#{field}_options"), { no_label: true }, {onchange: hidden_js }) %>
 </p>
 <%= content_tag 'div', :id => hidden_id, :style => (@pref.send(field) == 'selected' ? '' : 'display:none;') do %>

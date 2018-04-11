@@ -2,7 +2,9 @@
   <fieldset class="box">
     <legend><%= l(:label_user_telegram_settings)%></legend>
     <%= error_messages_for @pref %>
-    <%= render partial: 'filter_input', locals: {f: f, field: :issues} %>
+    <% %w(issues git).each do |field| %>
+      <%= render partial: 'filter_input', locals: {f: f, field: field} %>
+    <% end %>
     <p>
       <%= f.check_box :no_self_notified, label: l(:label_user_mail_no_self_notified) %>
     </p>

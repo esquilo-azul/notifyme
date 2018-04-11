@@ -13,12 +13,24 @@ class UserTelegramPreference
     issues_project_ids: {
       get: '[]',
       set: 'value.select(&:present?).map(&:to_i)'
+    },
+    git: {
+      get: '\'none\'',
+      set: 'value'
+    },
+    git_project_ids: {
+      get: '[]',
+      set: 'value.select(&:present?).map(&:to_i)'
     }
   }.freeze
 
   class << self
     def issues_values
       ::User::MAIL_NOTIFICATION_OPTIONS.map(&:first)
+    end
+
+    def git_values
+      %w(all selected none)
     end
   end
 
@@ -41,6 +53,10 @@ class UserTelegramPreference
   def issues_options
     raise 'Attribute "user" not set' unless user.present?
     user.valid_notification_options.collect { |o| [::I18n.t(o.last), o.first] }
+  end
+
+  def git_options
+    issues_options.select { |o| self.class.git_values.include?(o.last) }
   end
 
   def save

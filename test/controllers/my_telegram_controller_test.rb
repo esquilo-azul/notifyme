@@ -24,7 +24,9 @@ class MyTelegramControllerTest < Redmine::IntegrationTest
     [
       [:no_self_notified, [false, true]],
       [:issues, ::UserTelegramPreference.issues_values],
-      [:issues_project_ids, [[], [::Project.first.id]]]
+      [:issues_project_ids, [[], [::Project.first.id]]],
+      [:git, ::UserTelegramPreference.git_values],
+      [:git_project_ids, [[], [::Project.first.id]]]
     ]
   end
 
