@@ -44,11 +44,11 @@ module Notifyme
         s = ::Notifyme::Utils::SuppressClassMethod.new
         ::User.new # Force ":mail_notification" method creation
         s.add(::User, :mail_notification) do
-          telegram_pref.filter
+          telegram_pref.issues
         end
         ::Member.new # Force ":mail_notification?" method creation
         s.add(::Member, :mail_notification?) do
-          principal.telegram_pref.filter_project_ids.include?(project_id)
+          principal.telegram_pref.issues_project_ids.include?(project_id)
         end
         s
       end

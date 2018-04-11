@@ -1,0 +1,22 @@
+<%
+hidden_id = "#{field}-notified-projects"
+hidden_js = "if (this.value == \"selected\") {$(\"\##{hidden_id}\").show();} else {$(\"\##{hidden_id}\").hide();}"
+projects_key = "#{::UserTelegramPreference.model_name.param_key}[#{field}_project_ids][]"
+%>
+<p>
+  <%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>
+  <%= f.select(field, @pref.send("#{field}_options"), { no_label: true }, {onchange: hidden_js }) %>
+</p>
+<%= content_tag 'div', :id => hidden_id, :style => (@pref.send(field) == 'selected' ? '' : 'display:none;') do %>
+  <%= render_project_nested_lists(@user.projects) do |project|
+    content_tag('label',
+      check_box_tag(
+        projects_key, project.id,
+        @pref.send("#{field}_project_ids").include?(project.id),
+        :id => nil
+        ) + ' ' + h(project.name)
+    )
+    end %>
+  <%= hidden_field_tag projects_key, '' %>
+  <p><em class="info"><%= l(:text_user_mail_option) %></em></p>
+<% end %>

@@ -2,16 +2,16 @@ class UserTelegramPreference
   include ActiveModel::Model
 
   class << self
-    def filter_values
+    def issues_values
       ::User::MAIL_NOTIFICATION_OPTIONS.map(&:first)
     end
   end
 
-  PREFS = %i(no_self_notified filter filter_project_ids).freeze
+  PREFS = %i(no_self_notified issues issues_project_ids).freeze
 
   attr_accessor :user
 
-  validates :filter, presence: true, inclusion: { in: filter_values }
+  validates :issues, presence: true, inclusion: { in: issues_values }
 
   def save
     user.pref[:telegram] = Hash[PREFS.map { |k| [k, send(k)] }]
@@ -26,24 +26,24 @@ class UserTelegramPreference
     telegram_pref_set(__method__, value.present? && value != '0')
   end
 
-  def filter
+  def issues
     telegram_pref_get(__method__, 'only_my_events')
   end
 
-  def filter=(value)
+  def issues=(value)
     telegram_pref_set(__method__, value)
   end
 
-  def filter_options
+  def issues_options
     raise 'Attribute "user" not set' unless user.present?
     user.valid_notification_options.collect { |o| [::I18n.t(o.last), o.first] }
   end
 
-  def filter_project_ids
+  def issues_project_ids
     telegram_pref_get(__method__, [])
   end
 
-  def filter_project_ids=(value)
+  def issues_project_ids=(value)
     telegram_pref_set(__method__, value.select(&:present?).map(&:to_i))
   end
 

@@ -17,21 +17,21 @@ class MyTelegramControllerTest < ActionController::TestCase
 
   def test_update
     [false, true].each do |no_self_notified|
-      ::User::MAIL_NOTIFICATION_OPTIONS.map(&:first).each do |filter|
-        [[], [::Project.first.id]].each do |filter_project_ids|
-          assert_update_filter(no_self_notified, filter, filter_project_ids)
+      issues_values.each do |issues|
+        [[], [::Project.first.id]].each do |issues_project_ids|
+          assert_update_issues(no_self_notified, issues, issues_project_ids)
         end
       end
     end
   end
 
-  def assert_update_filter(no_self_notified, filter, filter_project_ids)
+  def assert_update_issues(no_self_notified, issues, issues_project_ids)
     put :update, user_telegram_preference: { no_self_notified: no_self_notified ? '1' : '0',
-                                             filter: filter,
-                                             filter_project_ids: filter_project_ids }
+                                             issues: issues,
+                                             issues_project_ids: issues_project_ids }
     assert_redirected_to '/my/telegram'
     assert_equal no_self_notified, User.current.telegram_pref.no_self_notified
-    assert_equal filter, User.current.telegram_pref.filter
-    assert_equal filter_project_ids, User.current.telegram_pref.filter_project_ids
+    assert_equal issues, User.current.telegram_pref.issues
+    assert_equal issues_project_ids, User.current.telegram_pref.issues_project_ids
   end
 end

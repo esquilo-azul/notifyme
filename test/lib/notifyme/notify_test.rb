@@ -48,7 +48,7 @@ module Notifyme
                    Notifyme::TelegramBot::Senders::Fake.messages.last)
     end
 
-    def test_filter
+    def test_issues
       create_issue(@notifier, nil)
       assert_issue_notify('all', true)
       assert_issue_notify('selected', false, [])
@@ -85,23 +85,23 @@ module Notifyme
 
     private
 
-    def assert_update_filter(filter, filter_project_ids)
-      utp = ::UserTelegramPreference.new(user: @notified, no_self_notified: false, filter: filter,
-                                         filter_project_ids: filter_project_ids)
+    def issues_preferences_update(issues, issues_project_ids)
+      utp = ::UserTelegramPreference.new(user: @notified, no_self_notified: false, issues: issues,
+                                         issues_project_ids: issues_project_ids)
       r = utp.save
       assert r, utp.errors.messages.to_s
       assert_equal false, @notified.telegram_pref.no_self_notified
-      assert_equal filter, @notified.telegram_pref.filter
-      assert_equal filter_project_ids, @notified.telegram_pref.filter_project_ids
+      assert_equal issues, @notified.telegram_pref.issues
+      assert_equal issues_project_ids, @notified.telegram_pref.issues_project_ids
     end
 
-    def assert_issue_notify(filter, notified, filter_project_ids = [])
-      assert_update_filter(filter, filter_project_ids)
+    def assert_issue_notify(issues, notified, issues_project_ids = [])
+      issues_preferences_update(issues, issues_project_ids)
       assert_updated_issue
       chat_ids = ::Notifyme::TelegramBot::Senders::Fake.messages.last[:chat_ids]
       assert_equal notified, chat_ids.include?(@telegram_chat.chat_id),
-                   "Telegram chat: #{@telegram_chat}, chat_ids: #{chat_ids}, filter: #{filter}, " \
-                   "filter_project_ids: #{filter_project_ids}"
+                   "Telegram chat: #{@telegram_chat}, chat_ids: #{chat_ids}, issues: #{issues}, " \
+                   "issues_project_ids: #{issues_project_ids}"
     end
 
     def create_notified_user
