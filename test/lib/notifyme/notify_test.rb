@@ -3,10 +3,10 @@ require 'test_helper'
 module Notifyme
   class NotifyTest < ActiveSupport::TestCase
     class UserSource
-      attr_reader :notified_users
+      attr_reader :notifyme_notified_users
 
       def initialize(user)
-        @notified_users = [user]
+        @notifyme_notified_users = [user]
       end
     end
     fixtures :users, :roles, :trackers, :enumerations, :issue_statuses
