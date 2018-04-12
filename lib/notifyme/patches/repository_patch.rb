@@ -3,6 +3,7 @@ module Notifyme
     module RepositoryPatch
       def self.included(base)
         base.send(:include, InstanceMethods)
+        base.send(:include, NotifyMethods)
       end
 
       module InstanceMethods
@@ -37,6 +38,33 @@ module Notifyme
 
         def check_git_repository
           raise 'Not a git repository' unless is_a?(Repository::Git)
+        end
+      end
+
+      module NotifyMethods
+        def notifyme_notified_users
+          telegram_mail_notification_suppress.on_suppress do
+            project.notified_users
+          end
+        end
+
+        private
+
+        def telegram_mail_notification_suppress
+          @telegram_mail_notification_suppresss ||= telegram_mail_notification_suppresss_uncached
+        end
+
+        def telegram_mail_notification_suppresss_uncached
+          s = ::Notifyme::Utils::SuppressClassMethod.new
+          ::User.new # Force ":mail_notification" method creation
+          s.add(::User, :mail_notification) do
+            telegram_pref.git
+          end
+          ::Member.new # Force ":mail_notification?" method creation
+          s.add(::Member, :mail_notification?) do
+            principal.telegram_pref.git_project_ids.include?(project_id)
+          end
+          s
         end
       end
     end
