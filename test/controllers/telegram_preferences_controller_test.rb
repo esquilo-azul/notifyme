@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MyTelegramControllerTest < Redmine::IntegrationTest
+class TelegramPreferencesControllerTest < Redmine::IntegrationTest
   fixtures :users, :projects
 
   setup do
@@ -8,7 +8,7 @@ class MyTelegramControllerTest < Redmine::IntegrationTest
   end
 
   def test_index
-    get '/my/telegram'
+    get my_telegram_path
     assert_on_index
   end
 
@@ -46,8 +46,8 @@ class MyTelegramControllerTest < Redmine::IntegrationTest
   end
 
   def assert_update(data)
-    put '/my/telegram', user_telegram_preference: params_to_put(data)
-    assert_redirected_to '/my/telegram'
+    put my_telegram_path, user_telegram_preference: params_to_put(data)
+    assert_redirected_to my_telegram_path
     assert_user_updated(data)
     follow_redirect!
   end
@@ -68,5 +68,9 @@ class MyTelegramControllerTest < Redmine::IntegrationTest
     data.each do |key, expected|
       assert_equal expected, User.current.telegram_pref.send(key), key
     end
+  end
+
+  def my_telegram_path
+    '/my/telegram_preferences'
   end
 end

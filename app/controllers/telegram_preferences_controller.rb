@@ -1,4 +1,4 @@
-class MyTelegramController < ApplicationController
+class TelegramPreferencesController < ApplicationController
   before_filter :require_login, :build_chats
 
   helper :users
@@ -10,7 +10,7 @@ class MyTelegramController < ApplicationController
   def update
     @pref = UserTelegramPreference.new(pref_params)
     if @pref.save
-      redirect_to my_telegram_path, notice: l(:notice_account_updated)
+      redirect_to telegram_preferences_path, notice: l(:notice_account_updated)
     else
       render :index
     end

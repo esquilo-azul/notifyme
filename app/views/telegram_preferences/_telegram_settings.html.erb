@@ -1,4 +1,4 @@
-<%= labelled_form_for @pref, url: my_telegram_path, method: :put do |f| %>
+<%= labelled_form_for @pref, url: telegram_preferences_path, method: :put do |f| %>
   <fieldset class="box">
     <legend><%= l(:label_user_telegram_settings)%></legend>
     <%= error_messages_for @pref %>
