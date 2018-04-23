@@ -2,7 +2,7 @@ module Notifyme
   module Hooks
     class AddMyTelegramLink < Redmine::Hook::ViewListener
       def view_my_account_contextual(_context)
-        link_to(l(:label_my_telegram), telegram_preferences_path(User.current),
+        link_to(l(:label_telegram_preferences), telegram_preferences_path(User.current),
                 class: 'icon icon-telegram')
       end
     end
