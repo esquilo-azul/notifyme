@@ -71,6 +71,6 @@ class TelegramPreferencesControllerTest < Redmine::IntegrationTest
   end
 
   def my_telegram_path
-    '/my/telegram_preferences'
+    "/users/#{User.current.id}/telegram_preferences"
   end
 end
