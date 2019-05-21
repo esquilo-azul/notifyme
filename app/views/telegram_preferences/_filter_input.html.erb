@@ -1,7 +1,7 @@
 <%
 hidden_id = "#{field}-notified-projects"
 hidden_js = "if (this.value == \"selected\") {$(\"\##{hidden_id}\").show();} else {$(\"\##{hidden_id}\").hide();}"
-projects_key = "#{::UserTelegramPreference.model_name.param_key}[#{field}_project_ids][]"
+projects_key = "#{::UserTelegramPreferences.model_name.param_key}[#{field}_project_ids][]"
 %>
 <p>
   <%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>

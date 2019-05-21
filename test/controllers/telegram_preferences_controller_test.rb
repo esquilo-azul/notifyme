@@ -23,9 +23,9 @@ class TelegramPreferencesControllerTest < Redmine::IntegrationTest
   def put_combinations
     [
       [:no_self_notified, [false, true]],
-      [:issues, ::UserTelegramPreference.issues_values],
+      [:issues, ::UserTelegramPreferences.issues_values],
       [:issues_project_ids, [[], [::Project.first.id]]],
-      [:git, ::UserTelegramPreference.git_values],
+      [:git, ::UserTelegramPreferences.git_values],
       [:git_project_ids, [[], [::Project.first.id]]]
     ]
   end
@@ -46,7 +46,7 @@ class TelegramPreferencesControllerTest < Redmine::IntegrationTest
   end
 
   def assert_update(data)
-    put my_telegram_path, user_telegram_preference: params_to_put(data)
+    put my_telegram_path, ::UserTelegramPreferences.model_name.param_key => params_to_put(data)
     assert_redirected_to my_telegram_path
     assert_user_updated(data)
     follow_redirect!

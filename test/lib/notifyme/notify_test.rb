@@ -86,7 +86,7 @@ module Notifyme
     private
 
     def issues_preferences_update(issues, issues_project_ids)
-      utp = ::UserTelegramPreference.new(user: @notified, no_self_notified: false, issues: issues,
+      utp = ::UserTelegramPreferences.new(user: @notified, no_self_notified: false, issues: issues,
                                          issues_project_ids: issues_project_ids)
       r = utp.save
       assert r, utp.errors.messages.to_s

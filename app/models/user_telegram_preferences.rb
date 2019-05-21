@@ -1,4 +1,4 @@
-class UserTelegramPreference
+class UserTelegramPreferences
   include ActiveModel::Model
 
   PREFS = {

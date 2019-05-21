@@ -8,7 +8,7 @@ module Notifyme
 
       module InstanceMethods
         def telegram_pref
-          @telegram_pref ||= UserTelegramPreference.new(user: self)
+          @telegram_pref ||= UserTelegramPreferences.new(user: self)
         end
       end
     end

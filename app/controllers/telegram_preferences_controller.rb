@@ -8,7 +8,7 @@ class TelegramPreferencesController < ApplicationController
   end
 
   def update
-    @pref = UserTelegramPreference.new(pref_params)
+    @pref = UserTelegramPreferences.new(pref_params)
     if @pref.save
       redirect_to telegram_preferences_path(@pref.user), notice: l(:notice_account_updated)
     else
@@ -23,7 +23,7 @@ class TelegramPreferencesController < ApplicationController
   end
 
   def pref_params
-    r = params[::UserTelegramPreference.model_name.param_key]
+    r = params[::UserTelegramPreferences.model_name.param_key]
         .permit(:no_self_notified, :issues, :git, issues_project_ids: [], git_project_ids: [])
         .merge(user: @user)
     r[:issues_project_ids] ||= []
