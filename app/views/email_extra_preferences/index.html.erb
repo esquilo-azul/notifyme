@@ -1,0 +1,10 @@
+<h2><%= t(:label_email_extra_preferences) %>: <%= @pref.user %></h2>
+<%= labelled_form_for @pref, url: email_extra_preferences_path(@pref.user), method: :put do |f| %>
+  <fieldset class="box">
+    <%= error_messages_for @pref %>
+    <p>
+      <%= f.check_box :assignee_reminder, label: l(:label_user_mail_assignee_reminder) %>
+    </p>
+    <%= submit_tag l(:button_update) %>
+  </fieldset>
+<% end %>

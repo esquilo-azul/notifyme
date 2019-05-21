@@ -1,7 +1,9 @@
 pt-BR:
   field_git: Git
   field_issues: Tarefas
+  label_email_extra_preferences: Email extra
   label_telegram_chats: Chats Telegram
   label_telegram_preferences: Telegram
+  label_user_mail_assignee_reminder: Email de lembrete de atribuições
   label_user_telegram_settings: Configurações de notificação
   label_notifyme: Notify-me
