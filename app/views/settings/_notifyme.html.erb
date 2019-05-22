@@ -14,3 +14,11 @@
   <label>Notificações de atualização de tarefa:</label>
   <%= check_box_tag('settings[issue_update_event_notify]', true, settings['issue_update_event_notify']) %>
 </p>
+<p>
+  <label>Query usada no email de lembrete de atribuições:</label>
+  <select name="settings[assignee_reminder_query_id]">
+    <%= options_for_select([['-','']] +
+        ::Notifyme::Settings.assignee_reminder_query_id_values.collect { |p| [ p.name, p.id ] },
+      settings['assignee_reminder_query_id'] ) %>
+  </select>
+</p>

@@ -20,6 +20,24 @@ module Notifyme
       def issue_update_event_notify
         Setting.plugin_notifyme[__method__]
       end
+
+      def assignee_reminder_query
+        ::IssueQuery.find(setting_value_or_raise('assignee_reminder_query_id').to_i)
+      end
+
+      def assignee_reminder_query_id_values
+        ::IssueQuery.visible.where(project_id: nil)
+      end
+
+      private
+
+      def setting_value_or_raise(key)
+        v = Setting.plugin_notifyme[key]
+        return v if v.present?
+
+        raise "Setting.plugin_notifyme['#{key}'] is blank. " \
+          "Set it in Notifyme's plugin configuration page."
+      end
     end
   end
 end
