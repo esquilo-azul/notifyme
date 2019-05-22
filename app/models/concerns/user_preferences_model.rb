@@ -13,7 +13,7 @@ module UserPreferencesModel
   def save
     return false unless valid?
 
-    user.pref[preferences_key] = Hash[preferences.map { |k| [k, send(k)] }]
+    user.pref[preferences_key] = Hash[preferences.map { |k| [k.to_sym, send(k)] }]
     user.pref.save!
   end
 
@@ -21,6 +21,8 @@ module UserPreferencesModel
 
   def user_pref_get(name, default_value)
     raise 'Attribute "user" is blank' if user.blank?
+
+    name = name.to_sym
 
     if user.pref[preferences_key] && user.pref[preferences_key][name]
       user.pref[preferences_key][name]
