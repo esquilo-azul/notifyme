@@ -9,4 +9,10 @@ namespace :notifyme do
     t.test_files = ["#{plugin_root}/test/**/*_test.rb"]
     t.verbose = true
   end
+
+  task assignee_reminder: :environment do
+    Mailer.with_synched_deliveries do
+      ::AssigneeReminderMailer.remind_all_users
+    end
+  end
 end

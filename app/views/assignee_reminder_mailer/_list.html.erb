@@ -1,0 +1,42 @@
+<% query_options = nil unless defined?(query_options) %>
+<% query_options ||= {} %>
+<div class="autoscroll">
+  <table class="list issues odd-even <%= query.css_classes %>">
+    <thead>
+      <tr>
+        <% query.inline_columns.each do |column| %>
+          <%= content_tag('th', column.caption) %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% grouped_issue_list(issues, query) do |issue, level, group_name, group_count, group_totals| -%>
+        <% if group_name %>
+          <% reset_cycle %>
+          <tr class="group open">
+            <td colspan="<%= query.inline_columns.size + 1 %>">
+              <span class="name"><%= group_name %></span> <span class="count"><%= group_count %></span>
+            </td>
+          </tr>
+        <% end %>
+        <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+          <% query.inline_columns.each do |column| %>
+            <%= content_tag('td', column_content(column, issue), :class => column.css_classes) %>
+          <% end %>
+        </tr>
+        <% query.block_columns.each do |column|
+          if (text = column_content(column, issue)) && text.present? -%>
+          <tr class="<%= current_cycle %>">
+            <td colspan="<%= query.inline_columns.size + 1 %>" class="<%= column.css_classes %>">
+              <% if query.block_columns.count > 1 %>
+                <span><%= column.caption %></span>
+              <% end %>
+              <%= text %>
+            </td>
+          </tr>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  </tbody>
+</table>
+</div>
