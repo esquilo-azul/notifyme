@@ -5,11 +5,14 @@ module UserPreferencesModel
 
   included do
     include ::ActiveModel::Model
+    validates :user, presence: true
   end
 
   attr_accessor :user
 
   def save
+    return false unless valid?
+
     user.pref[preferences_key] = Hash[preferences.map { |k| [k, send(k)] }]
     user.pref.save!
   end
