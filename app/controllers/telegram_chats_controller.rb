@@ -1,5 +1,5 @@
 class TelegramChatsController < ApplicationController
-  layout 'admin_active_scaffold'
+  layout 'admin'
   before_filter :require_admin
 
   active_scaffold :telegram_chat do |conf|
