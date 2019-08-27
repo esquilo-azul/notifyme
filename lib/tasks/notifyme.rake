@@ -6,8 +6,9 @@ namespace :notifyme do
 
     t.description = 'Run plugin notifyme\'s tests.'
     t.libs << 'test'
-    t.test_files = ["#{plugin_root}/test/**/*_test.rb"]
-    t.verbose = true
+    t.test_files = FileList["#{plugin_root}/test/**/*_test.rb"]
+    t.verbose = false
+    t.warning = false
   end
 
   task assignee_reminder: :environment do
