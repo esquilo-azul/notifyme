@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rake/testtask'
+
 namespace :notifyme do
   Rake::TestTask.new(test: 'db:test:prepare') do |t|
     plugin_root = ::File.dirname(::File.dirname(__dir__))
