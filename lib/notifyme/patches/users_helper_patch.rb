@@ -5,15 +5,12 @@ module Notifyme
     module UsersHelperPatch
       def self.included(base)
         require_dependency 'users_helper'
-        base.include(InstanceMethods)
-        base.class_eval do
-          alias_method_chain :user_settings_tabs, :notifyme
-        end
+        base.prepend(InstanceMethods)
       end
 
       module InstanceMethods
-        def user_settings_tabs_with_notifyme
-          user_settings_tabs_without_notifyme + [
+        def user_settings_tabs
+          super + [
             { name: 'notifyme', partial: 'users/notifyme', label: 'label_notifyme' }
           ]
         end
@@ -22,6 +19,4 @@ module Notifyme
   end
 end
 
-source = ::Notifyme::Patches::UsersHelperPatch
-target = ::UsersHelper
-target.send(:include, source) unless target.included_modules.include? source
+::UsersHelper.prepend(::Notifyme::Patches::UsersHelperPatch)
