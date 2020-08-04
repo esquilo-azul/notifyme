@@ -12,9 +12,9 @@ require_dependency 'notifyme/hooks/add_assets'
 
 Redmine::Plugin.register :notifyme do
   name 'Notify me'
-  author 'Eduardo Henrique Bogoni'
-  description 'Notificações'
-  version '0.4.3'
+  author ::EacRedmineBase0::AUTHOR
+  description ::EacRedmineBase0::SUMMARY
+  version ::EacRedmineBase0::VERSION
 
   settings(default: {}, partial: 'settings/notifyme')
 
