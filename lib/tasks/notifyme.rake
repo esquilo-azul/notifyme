@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
-require 'rake/testtask'
+require 'rspec/core/rake_task'
 
 namespace :notifyme do
-  Rake::TestTask.new(test: 'db:test:prepare') do |t|
-    plugin_root = ::File.dirname(::File.dirname(__dir__))
-
-    t.description = 'Run plugin notifyme\'s tests.'
-    t.libs << 'test'
-    t.test_files = FileList["#{plugin_root}/test/**/*_test.rb"]
-    t.verbose = false
-    t.warning = false
+  ::RSpec::Core::RakeTask.new(:test) do |t|
+    t.rspec_opts = "--pattern 'plugins/notifyme/spec/**/*_spec.rb'" \
+      " --default-path 'plugins/redmine_plugins_helper/spec' --require spec_helper"
   end
+  Rake::Task['notifyme:test'].enhance ['db:test:prepare']
 
   task assignee_reminder: :environment do
     Mailer.with_synched_deliveries do
