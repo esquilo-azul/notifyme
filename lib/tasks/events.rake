@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :notifyme do
   namespace :events do
     namespace :issue do

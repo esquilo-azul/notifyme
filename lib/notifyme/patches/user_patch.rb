@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Patches
     module UserPatch
@@ -20,5 +22,5 @@ module Notifyme
 end
 
 unless User.included_modules.include? Notifyme::Patches::UserPatch
-  User.send(:include, Notifyme::Patches::UserPatch)
+  User.include Notifyme::Patches::UserPatch
 end

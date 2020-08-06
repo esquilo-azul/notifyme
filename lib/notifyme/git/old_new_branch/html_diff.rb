@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Git
     class OldNewBranch
@@ -16,6 +18,7 @@ module Notifyme
           return 'Criado' if new?
           return 'Removido' if deleted?
           return 'Atualizado' if updated?
+
           'Operação não-mapeada'
         end
 
@@ -31,7 +34,7 @@ module Notifyme
         end
 
         def template_content
-          File.read(File.expand_path('../html_diff.html.erb', __FILE__))
+          File.read(File.expand_path('html_diff.html.erb', __dir__))
         end
 
         def branch_master

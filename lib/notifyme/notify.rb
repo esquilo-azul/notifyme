@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Notifyme
   class Notify
     class << self
-      NOTIFY_REQUIRED_FIELDS = [:author, :content_type, :content, :source].freeze
+      NOTIFY_REQUIRED_FIELDS = %i[author content_type content source].freeze
 
       def notify(data)
         notify_validate_required_fields(data)
@@ -26,7 +28,8 @@ module Notifyme
 
       def users(author, source)
         users = source.notifyme_notified_users
-        return users unless author.present?
+        return users if author.blank?
+
         users.select { |u| u != author || !u.telegram_pref.no_self_notified }
       end
     end

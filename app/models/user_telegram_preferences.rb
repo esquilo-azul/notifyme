@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'concerns/user_preferences_model'
 
 class UserTelegramPreferences

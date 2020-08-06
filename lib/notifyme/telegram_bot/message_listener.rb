@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'telegram/bot'
 
 module Notifyme
@@ -17,7 +19,7 @@ module Notifyme
 
       def add_or_update_chat(chat)
         c = TelegramChat.find_by(chat_id: chat.id)
-        c = TelegramChat.new(chat_id: chat.id) unless c
+        c ||= TelegramChat.new(chat_id: chat.id)
         c.chat_name = chat_name(chat)
         c.chat_type = chat.type
         c.save!
@@ -26,6 +28,7 @@ module Notifyme
       def chat_name(chat)
         return [chat.first_name, chat.last_name].join(' ') if chat.type == 'private'
         return chat.title if chat.type == 'group'
+
         '?'
       end
     end

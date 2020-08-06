@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module TelegramBot
     module Commands
@@ -5,7 +7,8 @@ module Notifyme
         include AbstractCommand
 
         def run
-          return unless send_text.present?
+          return if send_text.blank?
+
           bot.api.sendMessage(chat_id: message.chat.id, text: send_text)
         end
 

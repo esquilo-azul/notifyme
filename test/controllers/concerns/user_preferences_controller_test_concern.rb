@@ -26,7 +26,7 @@ module UserPreferencesControllerTestBase
 
   private
 
-  def all_put_combinations(left)
+  def all_put_combinations(left) # rubocop:disable Metrics/MethodLength
     x = left.pop
     return [] unless x
 

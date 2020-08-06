@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Events
     module Issue
@@ -19,7 +21,7 @@ module Notifyme
         private
 
         def template_file
-          File.expand_path('../base.html.erb', __FILE__)
+          File.expand_path('base.html.erb', __dir__)
         end
 
         def author

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepositoryBranch < ActiveRecord::Base
   belongs_to :repository
 

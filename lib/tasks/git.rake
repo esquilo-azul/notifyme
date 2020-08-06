@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :notifyme do
   namespace :git do
     desc 'Fetch all'

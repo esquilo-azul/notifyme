@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRepositoryBranches < ActiveRecord::Migration
   def change
     create_table :repository_branches do |t|

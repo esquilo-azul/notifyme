@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Utils
     class HtmlEncode
       def self.encode(str)
         b = ''
         str.each_char do |c|
-          b << if c.ord < 128
+          b += if c.ord < 128
                  c
                else
                  HTMLEntities.new.encode(c, :named)

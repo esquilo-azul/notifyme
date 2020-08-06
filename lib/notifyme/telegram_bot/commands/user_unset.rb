@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module TelegramBot
     module Commands
@@ -20,6 +22,7 @@ module Notifyme
           @telegram_chat ||= begin
             tc = TelegramChat.find_by(chat_id: message.chat.id)
             raise "Chat telegram não encontrado com o CHAT_ID=#{message.chat.id}" unless tc
+
             tc
           end
         end
@@ -39,7 +42,7 @@ module Notifyme
 
         def perform
           u = telegram_chat.user
-          telegram_chat.update_attributes!(user: nil)
+          telegram_chat.update!(user: nil)
           bot.api.sendMessage(chat_id: message.chat.id, text:
               "Usuário \"#{u.login}\" desvinculado do chat Telegram \"#{telegram_chat}\".")
         end

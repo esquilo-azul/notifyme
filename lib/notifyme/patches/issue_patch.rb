@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Patches
     module IssuePatch
@@ -15,7 +17,7 @@ module Notifyme
         private
 
         def telegram_mail_notification_suppress
-          @telegram_mail_notification_suppresss ||= telegram_mail_notification_suppresss_uncached
+          @telegram_mail_notification_suppress ||= telegram_mail_notification_suppresss_uncached
         end
 
         def telegram_mail_notification_suppresss_uncached

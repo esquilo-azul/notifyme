@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Events
     module Issue
@@ -8,6 +10,7 @@ module Notifyme
 
         def run
           return unless Notifyme::Settings.issue_update_event_notify
+
           super
         end
 

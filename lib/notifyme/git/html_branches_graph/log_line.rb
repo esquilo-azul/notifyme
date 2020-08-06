@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Git
     class HtmlBranchesGraph
@@ -14,7 +16,7 @@ module Notifyme
         end
 
         def template_content
-          File.read(File.expand_path('../log_line.html.erb', __FILE__))
+          File.read(File.expand_path('log_line.html.erb', __dir__))
         end
 
         def commit?
@@ -26,7 +28,7 @@ module Notifyme
         end
 
         def hash
-          @info[:H].blank? ? nil : @info[:H]
+          @info[:H].presence
         end
 
         def short_hash
@@ -49,12 +51,14 @@ module Notifyme
           r = @parent.branches.select { |b| b[:branch] == hash }
                      .map { |b| b[:abbreviation] }
           return '' if r.empty?
+
           "< #{r.join(', ')}"
         end
 
         def commit_class
           return 'new' if new?
           return 'deleted' if deleted?
+
           'reference'
         end
 
@@ -78,6 +82,7 @@ module Notifyme
 
         def commit_root?
           return false unless hash
+
           Git::Commands.parents(@parent.repository, hash).empty?
         end
       end

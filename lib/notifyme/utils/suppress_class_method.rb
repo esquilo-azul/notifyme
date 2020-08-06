@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Utils
     # https://coderwall.com/p/t6iimq/temporarily-suppress-or-replace-a-method-on-a-ruby-object

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 EventsManager.add_listener(Issue, :create, 'Notifyme::Events::Issue::Create')
 EventsManager.add_listener(Issue, :update, 'Notifyme::Events::Issue::Update')
 EventsManager.add_listener(Repository, :receive, 'Notifyme::Events::Repository::Receive')

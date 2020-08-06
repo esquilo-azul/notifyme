@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Html
     module Base
@@ -14,7 +16,7 @@ module Notifyme
       end
 
       def html
-        assets_content << template_content
+        assets_content + template_content
       end
 
       private
@@ -26,7 +28,7 @@ module Notifyme
       end
 
       def issue_title(issue)
-        content_tag(:div, project_path(issue.project), class: 'project') <<
+        content_tag(:div, project_path(issue.project), class: 'project') +
           content_tag(:div, issue, class: 'title')
       end
 
@@ -35,13 +37,13 @@ module Notifyme
       end
 
       def assets_directory
-        File.expand_path('../assets', __FILE__)
+        File.expand_path('assets', __dir__)
       end
 
       def assets_content
         b = ''
         Dir.glob("#{assets_directory}/*.css") do |css_file|
-          b << css_content(css_file)
+          b += css_content(css_file)
         end
         b
       end
@@ -70,6 +72,7 @@ module Notifyme
 
       def project_ancestors_path(ancestors)
         return [] if ancestors.empty?
+
         b = []
         root = ancestors.shift
         b << root

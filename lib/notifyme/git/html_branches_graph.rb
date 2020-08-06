@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Git
     class HtmlBranchesGraph
       attr_reader :repository
 
-      SEPARATOR = '@@@'.freeze
-      LOG_FORMAT = %w(H h an ai s).freeze
+      SEPARATOR = '@@@'
+      LOG_FORMAT = %w[H h an ai s].freeze
 
       def initialize(repository, branches)
         raise '"branches" is not a array' unless branches.is_a?(Array)
         raise '"branches" is empty' if branches.empty?
+
         @repository = repository
         @branches = branches
       end
@@ -57,6 +60,7 @@ module Notifyme
         commits = branches.map { |b| b[:branch].to_s }
         base = Commands.merge_base(repository, *commits)
         return nil if base.blank?
+
         Commands.parents(repository, base).first
       end
 

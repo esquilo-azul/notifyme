@@ -22,13 +22,8 @@ module UserPreferencesModel
   def user_pref_get(name, default_value)
     raise 'Attribute "user" is blank' if user.blank?
 
-    name = name.to_sym
-
-    if user.pref[preferences_key] && user.pref[preferences_key][name]
-      user.pref[preferences_key][name]
-    else
-      default_value
-    end
+    p = user.pref[preferences_key]
+    p && p[name.to_sym] ? p[name.to_sym] : default_value
   end
 
   def pref_get(name, default_value)

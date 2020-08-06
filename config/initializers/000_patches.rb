@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'notifyme/patches/issue_patch'
 require 'notifyme/patches/users_helper_patch'
 require 'notifyme/patches/repository_patch'

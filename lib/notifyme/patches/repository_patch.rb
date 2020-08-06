@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Patches
     module RepositoryPatch
@@ -10,6 +12,7 @@ module Notifyme
         def branch_revision(branch_name)
           check_git_repository
           return nil unless branches
+
           b = branches.find { |x| x.to_s == branch_name }
           b ? b.revision : nil
         end
@@ -51,7 +54,7 @@ module Notifyme
         private
 
         def telegram_mail_notification_suppress
-          @telegram_mail_notification_suppresss ||= telegram_mail_notification_suppresss_uncached
+          @telegram_mail_notification_suppress ||= telegram_mail_notification_suppresss_uncached
         end
 
         def telegram_mail_notification_suppresss_uncached
@@ -72,5 +75,5 @@ module Notifyme
 end
 
 unless Repository.included_modules.include? Notifyme::Patches::RepositoryPatch
-  Repository.send(:include, Notifyme::Patches::RepositoryPatch)
+  Repository.include Notifyme::Patches::RepositoryPatch
 end

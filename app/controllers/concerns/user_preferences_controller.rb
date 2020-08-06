@@ -4,7 +4,7 @@ module UserPreferencesController
   extend ActiveSupport::Concern
 
   included do
-    before_filter :require_access_for_user
+    before_action :require_access_for_user
   end
 
   def index

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RedmineApp::Application.routes.draw do
   resources(:telegram_chats) { as_routes }
   get '/users/:id/email_extra_preferences', to: 'email_extra_preferences#index',

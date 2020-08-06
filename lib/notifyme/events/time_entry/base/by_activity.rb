@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Events
     module TimeEntry
@@ -35,12 +37,12 @@ module Notifyme
               user: "#{time_entry.user.firstname} (24hs)" }
           end
 
-          def subject_row(k, v)
+          def subject_row(type, column_header_label)
             content_tag(:tr) do
               total = 0
-              b = content_tag(:th, v)
-              activities.each do |a|
-                hours = subject_hours(k, a)
+              b = content_tag(:th, column_header_label)
+              activities.each do |activity|
+                hours = subject_hours(type, activity)
                 b << content_tag(:td, format_number(hours))
                 total += hours
               end
@@ -48,21 +50,21 @@ module Notifyme
             end
           end
 
-          def subject_hours(k, a)
-            send("subject_hours_#{k}", a)
+          def subject_hours(type, activity)
+            send("subject_hours_#{type}", activity)
           end
 
-          def subject_hours_issue(a)
-            ::TimeEntry.where(issue: time_entry.issue, activity: a).sum(:hours)
+          def subject_hours_issue(activity)
+            ::TimeEntry.where(issue: time_entry.issue, activity: activity).sum(:hours)
           end
 
-          def subject_hours_user_issue(a)
-            ::TimeEntry.where(user: time_entry.user, issue: time_entry.issue, activity: a)
+          def subject_hours_user_issue(activity)
+            ::TimeEntry.where(user: time_entry.user, issue: time_entry.issue, activity: activity)
                        .sum(:hours)
           end
 
-          def subject_hours_user(a)
-            ::TimeEntry.where(user: time_entry.user, activity: a)
+          def subject_hours_user(activity)
+            ::TimeEntry.where(user: time_entry.user, activity: activity)
                        .where('created_on > ?', 24.hours.ago)
                        .sum(:hours)
           end
@@ -71,8 +73,8 @@ module Notifyme
             TimeEntryActivity.all
           end
 
-          def output_buffer=(b)
-            @b = b
+          def output_buffer=(buffer)
+            @b = buffer
           end
 
           def output_buffer

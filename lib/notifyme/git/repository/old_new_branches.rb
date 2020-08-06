@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifyme
   module Git
     class Repository
@@ -20,6 +22,7 @@ module Notifyme
 
         def branches_names
           return [] unless @repository.branches
+
           @repository.branches.map(&:to_s)
         end
       end
