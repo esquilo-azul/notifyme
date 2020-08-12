@@ -3,10 +3,9 @@
 RSpec.shared_context 'with user preferences', type: :metadata do
   fixtures :users, :projects
 
-  let(:user_id) { 2 }
+  include_context 'with logged user', 'jsmith'
 
   before do
-    page.set_rack_session(user_id: user_id)
     visit index_path
   end
 

@@ -34,7 +34,7 @@ describe ::TelegramPreferencesController, type: :feature do
   include_context('with user preferences') do
     let(:model_class) { ::UserTelegramPreferences }
     let(:user_pref_method) { :telegram_pref }
-    let(:index_path) { "/users/#{user_id}/telegram_preferences" }
+    let(:index_path) { "/users/#{::User.current.id}/telegram_preferences" }
     let(:no_self_notified_input_type) { :checkbox }
     let(:issues_input_type) { :select }
     let(:git_input_type) { :select }
