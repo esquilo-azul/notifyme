@@ -42,7 +42,7 @@ module Notifyme
         base = branches_merge_base
         base = base.blank? ? '' : "#{base[0, 8]}.."
         s = ['--no-pager', 'log', '--graph', "--pretty=format:#{log_format}"]
-        branches.each { |b| s << "#{base}#{b[:branch]}" }
+        s = branches.each { |b| s += "#{base}#{b[:branch]}" }
         s
       end
 

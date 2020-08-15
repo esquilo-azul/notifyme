@@ -44,7 +44,7 @@ module Notifyme
         end
 
         def hour_added_text(entry)
-          (entry[:add] ? '+' : '-') << l_hours(entry[:hours])
+          (entry[:add] ? '+' : '-') + l_hours(entry[:hours])
         end
 
         def format_number(number)

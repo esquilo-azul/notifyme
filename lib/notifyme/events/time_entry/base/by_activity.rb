@@ -7,18 +7,18 @@ module Notifyme
         module ByActivity
           def activity_table
             content_tag(:table, class: 'activity') do
-              header << body
+              header + body
             end
           end
 
           def header
             content_tag(:thead) do
               b = ActiveSupport::SafeBuffer.new
-              b << content_tag(:th, 'Tópico')
+              b += content_tag(:th, 'Tópico')
               activities.each do |a|
-                b << content_tag(:th, a)
+                b += content_tag(:th, a)
               end
-              b << content_tag(:th, 'Total')
+              b += content_tag(:th, 'Total')
               b
             end
           end
@@ -26,7 +26,7 @@ module Notifyme
           def body
             content_tag(:tbody) do
               b = ActiveSupport::SafeBuffer.new
-              subjects.each { |k, v| b << subject_row(k, v) }
+              subjects.each { |k, v| b += subject_row(k, v) }
               b
             end
           end
@@ -43,10 +43,10 @@ module Notifyme
               b = content_tag(:th, column_header_label)
               activities.each do |activity|
                 hours = subject_hours(type, activity)
-                b << content_tag(:td, format_number(hours))
+                b += content_tag(:td, format_number(hours))
                 total += hours
               end
-              b << content_tag(:td, format_number(total))
+              b += content_tag(:td, format_number(total))
             end
           end
 
