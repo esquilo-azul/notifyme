@@ -41,9 +41,8 @@ module Notifyme
       def log_command
         base = branches_merge_base
         base = base.blank? ? '' : "#{base[0, 8]}.."
-        s = ['--no-pager', 'log', '--graph', "--pretty=format:#{log_format}"]
-        s = branches.each { |b| s += "#{base}#{b[:branch]}" }
-        s
+        ['--no-pager', 'log', '--graph', "--pretty=format:#{log_format}"] +
+          branches.map { |b| "#{base}#{b.fetch(:branch)}" }
       end
 
       def log_format
