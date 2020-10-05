@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files spec test`.split("\n")
 
+  s.add_dependency 'eac_ruby_utils', '~> 0.46'
   s.add_dependency 'htmlentities'
   s.add_dependency 'imgkit'
   s.add_dependency 'telegram-bot-ruby'
