@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 RedmineApp::Application.routes.draw do
-  resources(:telegram_chats) { as_routes }
+  concern :active_scaffold, ActiveScaffold::Routing::Basic.new(association: true)
+  resources(:telegram_chats, concerns: :active_scaffold)
   get '/users/:id/email_extra_preferences', to: 'email_extra_preferences#index',
                                             as: 'email_extra_preferences'
   put '/users/:id/email_extra_preferences', to: 'email_extra_preferences#update'
