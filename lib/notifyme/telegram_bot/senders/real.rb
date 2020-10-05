@@ -18,6 +18,14 @@ module Notifyme
             end
           end
 
+          protected
+
+          def telegram_send_photo(options)
+            Bot.run do |bot|
+              bot.api.sendPhoto(options)
+            end
+          end
+
           private
 
           def send_plain(plain_text, chat_ids)
@@ -47,15 +55,11 @@ module Notifyme
           def send_photo(photo, chat_id)
             photo = Faraday::UploadIO.new(File.expand_path(photo.to_s), nil) unless
             photo.is_a?(Faraday::UploadIO)
-            Bot.run do |bot|
-              bot.api.sendPhoto(chat_id: chat_id, photo: photo)
-            end
+            telegram_send_photo(chat_id: chat_id, photo: photo)
           end
 
           def send_photo_by_file_id(file_id, chat_id)
-            Bot.run do |bot|
-              bot.api.sendPhoto(chat_id: chat_id, photo: file_id)
-            end
+            telegram_send_photo(chat_id: chat_id, photo: file_id)
           end
 
           def html_to_image_file(html)
