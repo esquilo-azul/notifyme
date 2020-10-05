@@ -20,6 +20,12 @@ module Notifyme
 
           protected
 
+          def telegram_send_message(options)
+            Bot.run do |bot|
+              bot.api.sendMessage(options)
+            end
+          end
+
           def telegram_send_photo(options)
             Bot.run do |bot|
               bot.api.sendPhoto(options)
@@ -29,10 +35,8 @@ module Notifyme
           private
 
           def send_plain(plain_text, chat_ids)
-            Bot.run do |bot|
-              chat_ids.each do |chat_id|
-                bot.api.sendMessage(chat_id: chat_id, text: plain_text)
-              end
+            chat_ids.each do |chat_id|
+              telegram_send_message(chat_id: chat_id, text: plain_text)
             end
           end
 
