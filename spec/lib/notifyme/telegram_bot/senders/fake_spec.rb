@@ -15,12 +15,12 @@ RSpec.describe ::Notifyme::TelegramBot::Senders::Fake do
 
   context 'when second message is send' do
     before do
-      ::Notifyme::TelegramBot::Bot.send_message(:html, '<b>Test 2!</b>', [])
+      ::Notifyme::TelegramBot::Bot.send_message(:html, '<b>Test 2!</b>', [12_345_678])
     end
 
     it do
       expect(described_class.messages.last).to eq(
-        { content_type: :html, content: '<b>Test 2!</b>', chat_ids: [] }
+        { content_type: :html, content: '<b>Test 2!</b>', chat_ids: [12_345_678] }
       )
     end
   end
