@@ -34,7 +34,7 @@ module Notifyme
       private
 
       def setting_value(key)
-        ::Setting.plugin_notifyme[key]
+        ::Setting.plugin_notifyme.symbolize_keys[key.to_sym]
       end
 
       def setting_value_or_raise(key)
