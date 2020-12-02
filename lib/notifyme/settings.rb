@@ -4,11 +4,7 @@ module Notifyme
   class Settings
     class << self
       def telegram_bot_default_chat_id
-        if setting_value('telegram_bot_default_chat_id').blank?
-          raise 'Chave do Bot Telegram não foi atribuída. Acesse /settings/plugin/notifyme para ' \
-            'atribuir uma.'
-        end
-        setting_value('telegram_bot_default_chat_id')
+        setting_value_or_raise(__method__)
       end
 
       def telegram_bot_name
