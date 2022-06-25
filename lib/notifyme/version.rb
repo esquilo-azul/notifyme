@@ -4,5 +4,5 @@ module Notifyme
   AUTHOR = 'Eduardo Henrique Bogoni'
   HOMEPAGE = 'https://github.com/esquilo-azul/notifyme'
   SUMMARY = 'Notificações.'
-  VERSION = '0.4.10'
+  VERSION = '0.4.11'
 end
