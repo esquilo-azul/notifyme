@@ -23,7 +23,7 @@ module Notifyme
 
       def template_content
         s = ''
-        ERB.new(File.read(template_file), 0, '', 's').result(binding)
+        ERB.new(File.read(template_file), 0, eoutvar: 's').result(binding)
         Notifyme::Utils::HtmlEncode.encode(s)
       end
 
