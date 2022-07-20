@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'redmine'
+require 'notifyme/version'
 
 Redmine::Plugin.register :notifyme do
   name 'Notify me'
-  author ::EacRedmineBase0::AUTHOR
-  description ::EacRedmineBase0::SUMMARY
-  version ::EacRedmineBase0::VERSION
+  author ::Notifyme::AUTHOR
+  description ::Notifyme::SUMMARY
+  version ::Notifyme::VERSION
 
   settings(default: {}, partial: 'settings/notifyme')
 
