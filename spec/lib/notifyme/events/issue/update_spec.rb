@@ -3,8 +3,8 @@
 require 'notifyme/events/issue/update'
 
 RSpec.describe ::Notifyme::Events::Issue::Update do
-  fixtures :enumerations, :issues, :issue_relations, :issue_statuses, :projects, :trackers, :users,
-           :members
+  fixtures :enumerations, :issues, :issue_categories, :issue_relations, :issue_statuses, :projects,
+           :trackers, :users, :members
 
   before do
     Setting.plugin_notifyme = Setting.plugin_notifyme.merge(issue_update_event_notify: true)
