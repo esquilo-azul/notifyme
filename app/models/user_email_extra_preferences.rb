@@ -12,7 +12,7 @@ class UserEmailExtraPreferences
   end
 
   def assignee_reminder=(value)
-    pref_set(__method__.to_s.gsub(/\=\z/, ''), value ? true : false)
+    pref_set(__method__.to_s.gsub(/=\z/, ''), value ? true : false)
   end
 
   def preferences

@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/RedundantRegexpEscape:
-  Exclude:
-  - app/models/user_email_extra_preferences.rb
 Style/RedundantStringEscape:
   Exclude:
   - lib/notifyme/html/base.rb
