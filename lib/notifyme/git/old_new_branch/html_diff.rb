@@ -6,7 +6,7 @@ module Notifyme
       module HtmlDiff
         def html_graph
           s = ''
-          ERB.new(template_content, 0, '', 's').result(binding)
+          ERB.new(template_content, 0, '', 's').result(binding) # rubocop:disable Lint/ErbNewArguments
           Utils::HtmlEncode.encode(s)
         end
 

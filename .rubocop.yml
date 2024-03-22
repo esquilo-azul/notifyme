@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Lint/ErbNewArguments:
-  Exclude:
-  - lib/notifyme/git/html_branches_graph/log_line.rb
-  - lib/notifyme/git/old_new_branch/html_diff.rb
-  - lib/notifyme/html/base.rb
 Lint/MissingSuper:
   Exclude:
   - lib/notifyme/events/issue/create.rb
