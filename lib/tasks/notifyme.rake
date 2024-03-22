@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'redmine_plugins_helper/plugin_rake_task'
-::RedminePluginsHelper::PluginRakeTask.register(:notifyme, :test)
+require 'redmine_plugins_helper/test_tasks/auto'
+RedminePluginsHelper::TestTasks::Auto.register(:notifyme)
 
 namespace :notifyme do
   task assignee_reminder: :environment do
