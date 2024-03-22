@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/SlicingWithRange:
-  Exclude:
-  - lib/notifyme/telegram_bot/command_factory.rb
 Style/StringConcatenation:
   Exclude:
   - lib/notifyme/events/time_entry/base.rb

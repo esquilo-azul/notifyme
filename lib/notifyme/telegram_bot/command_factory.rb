@@ -21,7 +21,7 @@ module Notifyme
 
         match = %r{^/(\S+)(?:\s(.+))*}.match(message.text.strip)
         if match
-          parse_command(match[1..-1].join(' ').strip)
+          parse_command(match[1..-1].join(' ').strip) # rubocop:disable Style/SlicingWithRange
         else
           [nil, nil]
         end
@@ -41,7 +41,7 @@ module Notifyme
 
       def self.parse_command(command_line)
         args = Shellwords.split(command_line)
-        [args[0], args[1..-1]]
+        [args[0], args[1..-1]] # rubocop:disable Style/SlicingWithRange
       end
 
       def self.find_command(command_name, bot, message, args)
