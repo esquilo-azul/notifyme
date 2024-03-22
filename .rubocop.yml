@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Rails/Pluck:
-  Exclude:
-  - lib/notifyme/git/html_branches_graph/log_line.rb
 Rails/RedundantPresenceValidationOnBelongsTo:
   Exclude:
   - app/models/repository_branch.rb
