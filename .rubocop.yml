@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/HashConversion:
-  Exclude:
-  - app/models/concerns/user_preferences_model.rb
 Style/IfWithBooleanLiteralBranches:
   Exclude:
   - lib/notifyme/git/html_branches_graph/log_line.rb

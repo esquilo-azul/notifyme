@@ -13,7 +13,7 @@ module UserPreferencesModel
   def save
     return false unless valid?
 
-    user.pref[preferences_key] = Hash[preferences.map { |k| [k.to_sym, send(k)] }]
+    user.pref[preferences_key] = Hash[preferences.map { |k| [k.to_sym, send(k)] }] # rubocop:disable Style/HashConversion
     user.pref.save!
   end
 
