@@ -5,7 +5,7 @@ module NotifymeMailerHelper
     case column.name
     when :id
       link_to value, issue_url(item)
-    when :subject
+    when :subject # rubocop:disable Lint/DuplicateBranch
       link_to value, issue_url(item)
     when :parent
       if value

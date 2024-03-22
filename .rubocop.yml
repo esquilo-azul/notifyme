@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Lint/DuplicateBranch:
-  Exclude:
-  - app/helpers/notifyme_mailer_helper.rb
 Lint/ErbNewArguments:
   Exclude:
   - lib/notifyme/git/html_branches_graph/log_line.rb
