@@ -31,7 +31,7 @@ module Notifyme
 
       def old_rev
         b = RepositoryBranch.where(repository: repository, name: branch_name).first
-        b ? b.revision : nil
+        b ? b.revision : nil # rubocop:disable Style/SafeNavigation
       end
 
       def new_rev

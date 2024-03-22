@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/SafeNavigation:
-  Exclude:
-  - lib/notifyme/git/old_new_branch.rb
-  - lib/notifyme/patches/repository_patch.rb
 Style/SlicingWithRange:
   Exclude:
   - lib/notifyme/telegram_bot/command_factory.rb

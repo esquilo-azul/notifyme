@@ -14,7 +14,7 @@ module Notifyme
           return nil unless branches
 
           b = branches.find { |x| x.to_s == branch_name }
-          b ? b.revision : nil
+          b ? b.revision : nil # rubocop:disable Style/SafeNavigation
         end
 
         def git_cmd(args)
