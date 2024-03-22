@@ -15,7 +15,7 @@ module Notifyme
 
         def clear_cache_branches
           cache_branches.each do |b|
-            Rails.logger.debug("Removendo branch #{b}")
+            Rails.logger.debug { "Removendo branch #{b}" }
             b.destroy!
           end
         end
@@ -23,11 +23,11 @@ module Notifyme
         def create_cache_branches
           if repository.branches
             repository.branches.each do |b|
-              Rails.logger.debug("Adicionando \"#{b}\" em #{self}")
+              Rails.logger.debug { "Adicionando \"#{b}\" em #{self}" }
               RepositoryBranch.create!(repository: repository, name: b, revision: b.revision)
             end
           else
-            Rails.logger.debug("Branches não encontrados para #{self}")
+            Rails.logger.debug { "Branches não encontrados para #{self}" }
           end
         end
       end

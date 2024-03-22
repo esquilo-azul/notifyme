@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Rails/EagerEvaluationLogMessage:
-  Exclude:
-  - lib/notifyme/git/repository/notify.rb
-  - lib/notifyme/git/repository/reset.rb
 Rails/FindEach:
   Exclude:
   - lib/tasks/git.rake
