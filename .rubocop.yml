@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/IfWithBooleanLiteralBranches:
-  Exclude:
-  - lib/notifyme/git/html_branches_graph/log_line.rb
 Style/RedundantConstantBase:
   Exclude:
   - app/models/assignee_reminder_mailer.rb

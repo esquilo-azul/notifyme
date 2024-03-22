@@ -20,7 +20,7 @@ module Notifyme
         end
 
         def commit?
-          @info[:H].blank? ? false : true
+          @info[:H].blank? ? false : true # rubocop:disable Style/IfWithBooleanLiteralBranches
         end
 
         def offset
