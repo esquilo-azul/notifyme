@@ -15,7 +15,7 @@ namespace :notifyme do
 
     desc 'Envia notificações de alterações em repositórios Git'
     task :notify, [:reset] => :environment do |_t, args|
-      Repository.where(type: 'Repository::Xitolite').each do |r|
+      Repository.where(type: 'Repository::Xitolite').each do |r| # rubocop:disable Rails/FindEach
         Notifyme::Git::Repository.new(r).notify(args.reset.present?)
       end
     end

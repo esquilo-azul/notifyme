@@ -35,7 +35,7 @@ RSpec.shared_context 'with user preferences', type: :metadata do
   def select_set_value(input_name, value)
     input = find(:select, input_name)
     found = []
-    input.all(:option).each do |opt|
+    input.all(:option).each do |opt| # rubocop:disable Rails/FindEach
       found << opt[:value]
       if opt[:value] == value
         opt.select_option

@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Rails/FindEach:
-  Exclude:
-  - lib/tasks/git.rake
-  - spec/controllers/user_preferences_shared_context.rb
 Rails/Pluck:
   Exclude:
   - lib/notifyme/git/html_branches_graph/log_line.rb
