@@ -61,7 +61,7 @@ module Notifyme
       end
 
       def issue_url(issue, _options = {})
-        link_to("\##{issue.id}")
+        link_to("##{issue.id}")
       end
 
       def project_path(project)
