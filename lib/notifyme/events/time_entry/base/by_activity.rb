@@ -60,13 +60,13 @@ module Notifyme
 
           def subject_hours_user_issue(activity)
             ::TimeEntry.where(user: time_entry.user, issue: time_entry.issue, activity: activity)
-                       .sum(:hours)
+              .sum(:hours)
           end
 
           def subject_hours_user(activity)
             ::TimeEntry.where(user: time_entry.user, activity: activity)
-                       .where('created_on > ?', 24.hours.ago)
-                       .sum(:hours)
+              .where('created_on > ?', 24.hours.ago)
+              .sum(:hours)
           end
 
           def activities

@@ -49,7 +49,7 @@ module Notifyme
 
         def branches
           r = @parent.branches.select { |b| b[:branch] == hash }
-                     .map { |b| b[:abbreviation] }
+                .map { |b| b[:abbreviation] }
           return '' if r.empty?
 
           "< #{r.join(', ')}"

@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Layout/MultilineMethodCallIndentation:
-  Exclude:
-  - app/controllers/telegram_preferences_controller.rb
-  - lib/notifyme/events/time_entry/base/by_activity.rb
-  - lib/notifyme/git/html_branches_graph/log_line.rb
 Lint/DuplicateBranch:
   Exclude:
   - app/helpers/notifyme_mailer_helper.rb
