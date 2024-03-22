@@ -19,4 +19,4 @@ module Notifyme
   end
 end
 
-::UsersHelper.prepend(::Notifyme::Patches::UsersHelperPatch)
+UsersHelper.prepend(Notifyme::Patches::UsersHelperPatch)

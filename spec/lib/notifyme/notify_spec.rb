@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ::Notifyme::Notify do
+RSpec.describe Notifyme::Notify do
   fixtures :users, :roles, :trackers, :enumerations, :issue_statuses
 
   before do
@@ -10,11 +10,11 @@ RSpec.describe ::Notifyme::Notify do
     )
   end
 
-  it { expect(::Notifyme::TelegramBot::Senders::Fake.messages).to be_empty }
+  it { expect(Notifyme::TelegramBot::Senders::Fake.messages).to be_empty }
 
   describe 'no self notified configuration' do
     let(:user_source_class) do
-      ::Class.new do
+      Class.new do
         attr_reader :notifyme_notified_users
 
         def initialize(user)
@@ -24,8 +24,8 @@ RSpec.describe ::Notifyme::Notify do
     end
     let(:user) { users(:users_002) } # rubocop:disable Naming/VariableNumber
     let(:telegram_chat) do
-      ::TelegramChat.create!(chat_id: 12_345_678, chat_type: 'private', chat_name: 'Admin',
-                             user: user)
+      TelegramChat.create!(chat_id: 12_345_678, chat_type: 'private', chat_name: 'Admin',
+                           user: user)
     end
     let(:source) { user_source_class.new(telegram_chat.user) }
 
@@ -46,7 +46,7 @@ RSpec.describe ::Notifyme::Notify do
       before do
         user.telegram_pref.no_self_notified = true
         user.telegram_pref.save || raise('Unsaved')
-        Notifyme::Notify.notify(content_type: :plain, content: 'Test 2!', author: user,
+        Notifyme::Notify.notify(content_type: :plain, content: 'Test 2!', author: user, # rubocop:disable RSpec/DescribedClass
                                 source: source)
       end
 
@@ -58,7 +58,7 @@ RSpec.describe ::Notifyme::Notify do
 
       context 'when message with no author is send' do
         before do
-          Notifyme::Notify.notify(content_type: :plain, content: 'Test 3!', author: nil,
+          Notifyme::Notify.notify(content_type: :plain, content: 'Test 3!', author: nil, # rubocop:disable RSpec/DescribedClass
                                   source: source)
         end
 
@@ -73,20 +73,20 @@ RSpec.describe ::Notifyme::Notify do
 
   describe 'issues configuration' do
     def create_user(login)
-      u = ::User.new(firstname: login, lastname: 'Stubbed', mail: "#{login}@stubworld.net")
+      u = User.new(firstname: login, lastname: 'Stubbed', mail: "#{login}@stubworld.net")
       u.login = login + '_stub'
       u.save!
-      ::Member.create!(project: the_project, user: u, roles: [::Role.first],
-                       mail_notification: true)
+      Member.create!(project: the_project, user: u, roles: [Role.first],
+                     mail_notification: true)
       u
     end
 
-    let(:the_project) { ::Project.create!(name: 'Stubbed project', identifier: 'stubbed_project') }
+    let(:the_project) { Project.create!(name: 'Stubbed project', identifier: 'stubbed_project') }
     let(:notified_user) { create_user('Notified') }
     let(:notifier_user) { create_user('Notifier') }
     let(:the_telegram_chat) do
-      ::TelegramChat.create!(user: notified_user, chat_id: 112_729_332,
-                             chat_name: 'Stub Chat', chat_type: 'private')
+      TelegramChat.create!(user: notified_user, chat_id: 112_729_332,
+                           chat_name: 'Stub Chat', chat_type: 'private')
     end
 
     before do
@@ -109,26 +109,26 @@ RSpec.describe ::Notifyme::Notify do
           let(:author) { send("#{users[0]}_user") }
           let(:assigned) { users[1].if_present { |x| send("#{x}_user") } }
           let(:issue) do
-            ::Issue.create!(project: the_project, author: author, subject: 'STUUUUB!',
-                            assigned_to: assigned, tracker: ::Tracker.first,
-                            priority: ::IssuePriority.first, status: IssueStatus.find(1))
+            Issue.create!(project: the_project, author: author, subject: 'STUUUUB!',
+                          assigned_to: assigned, tracker: Tracker.first,
+                          priority: IssuePriority.first, status: IssueStatus.find(1))
           end
           let(:issues_project_ids) { prefs[1] ? [the_project.id] : [] }
           let(:issues_pref) { prefs[0] }
           let(:notified) { v[index] ? 'to' : 'not_to' }
           let(:user_telegram_prefs_save_result) do
-            ::UserTelegramPreferences.new(
+            UserTelegramPreferences.new(
               user: notified_user, no_self_notified: false,
               issues: issues_pref, issues_project_ids: issues_project_ids
             ).save
           end
-          let(:last_message) { ::Notifyme::TelegramBot::Senders::Fake.messages.last }
+          let(:last_message) { Notifyme::TelegramBot::Senders::Fake.messages.last }
 
           before do
             user_telegram_prefs_save_result
             last_message
             issue.reload
-            issue.init_journal(notifier_user, "New note! #{::Time.zone.now}")
+            issue.init_journal(notifier_user, "New note! #{Time.zone.now}")
             issue.save!
           end
 
@@ -138,11 +138,11 @@ RSpec.describe ::Notifyme::Notify do
           it { expect(notified_user.telegram_pref.issues_project_ids).to eq(issues_project_ids) }
 
           it do
-            expect(::Notifyme::TelegramBot::Senders::Fake.messages.last).not_to eq(last_message)
+            expect(Notifyme::TelegramBot::Senders::Fake.messages.last).not_to eq(last_message)
           end
 
           it do
-            expect(::Notifyme::TelegramBot::Senders::Fake.messages.last[:chat_ids])
+            expect(Notifyme::TelegramBot::Senders::Fake.messages.last[:chat_ids])
               .send(notified, include(the_telegram_chat.chat_id))
           end
         end

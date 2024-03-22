@@ -37,6 +37,6 @@ module Notifyme
   end
 end
 
-source = ::Notifyme::Patches::IssuePatch
-target = ::Issue
+source = Notifyme::Patches::IssuePatch
+target = Issue
 target.send(:include, source) unless target.included_modules.include? source

@@ -1,21 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - app/models/assignee_reminder_mailer.rb
-  - init.rb
-  - lib/notifyme/patches/issue_patch.rb
-  - lib/notifyme/patches/users_helper_patch.rb
-  - lib/tasks/notifyme.rake
-  - notifyme.gemspec
-  - spec/controllers/email_extra_preferences_controller_spec.rb
-  - spec/controllers/telegram_preferences_controller_spec.rb
-  - spec/controllers/user_preferences_shared_context.rb
-  - spec/lib/notifyme/events/issue/update_spec.rb
-  - spec/lib/notifyme/notify_spec.rb
-  - spec/lib/notifyme/telegram_bot/senders/fake_spec.rb
-  - spec/lib/notifyme/utils/suppress_class_method_spec.rb
 Style/RedundantRegexpEscape:
   Exclude:
   - app/models/user_email_extra_preferences.rb

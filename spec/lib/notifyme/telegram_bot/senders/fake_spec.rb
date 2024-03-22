@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe ::Notifyme::TelegramBot::Senders::Fake do
+RSpec.describe Notifyme::TelegramBot::Senders::Fake do
   context 'when first message is send' do
     before do
-      ::Notifyme::TelegramBot::Bot.send_message(:plain, 'Test 1!', [12_345_678])
+      Notifyme::TelegramBot::Bot.send_message(:plain, 'Test 1!', [12_345_678])
     end
 
     it do
@@ -15,7 +15,7 @@ RSpec.describe ::Notifyme::TelegramBot::Senders::Fake do
 
   context 'when second message is send' do
     before do
-      ::Notifyme::TelegramBot::Bot.send_message(:html, '<b>Test 2!</b>', [12_345_678])
+      Notifyme::TelegramBot::Bot.send_message(:html, '<b>Test 2!</b>', [12_345_678])
     end
 
     it do

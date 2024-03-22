@@ -6,7 +6,7 @@ require 'redmine_plugins_helper/plugin_rake_task'
 namespace :notifyme do
   task assignee_reminder: :environment do
     Mailer.with_synched_deliveries do
-      ::AssigneeReminderMailer.remind_all_users
+      AssigneeReminderMailer.remind_all_users
     end
   end
 end

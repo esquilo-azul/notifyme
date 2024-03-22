@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe ::Notifyme::Utils::SuppressClassMethod do
+RSpec.describe Notifyme::Utils::SuppressClassMethod do
   let(:stub_class) do
-    ::Class.new do
+    Class.new do
       def metodo1
         'original1'
       end

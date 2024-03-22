@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AssigneeReminderMailer < ::Mailer
+class AssigneeReminderMailer < Mailer
   helper ::QueriesHelper
   helper ::NotifymeMailerHelper
 
