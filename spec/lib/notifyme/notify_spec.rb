@@ -56,7 +56,7 @@ RSpec.describe ::Notifyme::Notify do
         )
       }
 
-      context 'when message with no author is send' do # rubocop:disable RSpec/NestedGroups
+      context 'when message with no author is send' do
         before do
           Notifyme::Notify.notify(content_type: :plain, content: 'Test 3!', author: nil,
                                   source: source)

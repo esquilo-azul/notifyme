@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Lint/RedundantCopDisableDirective:
-  Exclude:
-  - lib/notifyme/telegram_bot/commands/user_set.rb
-  - spec/lib/notifyme/notify_spec.rb
 Metrics/BlockLength:
   Exclude:
   - lib/tasks/events.rake
