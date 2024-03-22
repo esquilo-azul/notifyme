@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-namespace :notifyme do
-  namespace :events do
+namespace :notifyme do # rubocop:disable Metrics/BlockLength
+  namespace :events do # rubocop:disable Metrics/BlockLength
     namespace :issue do
       desc 'Envia notificações da criação de um Issue'
       task :create, [:issue_id] => :environment do |_t, args|
