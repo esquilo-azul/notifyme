@@ -4,7 +4,7 @@ class RepositoryBranch < ActiveRecord::Base
   belongs_to :repository
 
   validates :repository, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
-  validates :name, presence: true, uniqueness: { scope: [:repository] }
+  validates :name, presence: true, uniqueness: { scope: [:repository] } # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :revision, presence: true
 
   def to_s

@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Rails/UniqueValidationWithoutIndex:
-  Exclude:
-  - app/models/repository_branch.rb
-  - app/models/telegram_chat.rb
 Style/DocumentDynamicEvalDefinition:
   Exclude:
   - app/models/user_telegram_preferences.rb
