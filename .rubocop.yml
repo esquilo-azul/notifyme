@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Gemspec/RequiredRubyVersion:
-  Exclude:
-  - notifyme.gemspec
 Layout/LineEndStringConcatenationIndentation:
   Exclude:
   - lib/notifyme/settings.rb
