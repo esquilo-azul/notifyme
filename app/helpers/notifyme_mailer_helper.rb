@@ -45,7 +45,7 @@ module NotifymeMailerHelper
   end
 
   def link_to_project(project, options = {}, html_options = nil)
-    super project, { only_path: false }.merge(options), html_options
+    super(project, { only_path: false }.merge(options), html_options)
   end
 
   def user_path(user)
