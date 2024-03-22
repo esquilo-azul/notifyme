@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Capybara/ClickLinkOrButtonStyle:
-  Exclude:
-  - spec/controllers/user_preferences_shared_context.rb
 Gemspec/DeprecatedAttributeAssignment:
   Exclude:
   - notifyme.gemspec

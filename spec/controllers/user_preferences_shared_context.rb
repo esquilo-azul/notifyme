@@ -15,7 +15,7 @@ RSpec.shared_context 'with user preferences', type: :metadata do
     context "when data #{data} is submitted" do
       before do
         data.each { |key, expected| input_set_value(key, expected) }
-        click_button ::I18n.t(:button_update)
+        click_button ::I18n.t(:button_update) # rubocop:disable Capybara/ClickLinkOrButtonStyle
       end
 
       it { expect(page).to have_current_path(index_path) }
