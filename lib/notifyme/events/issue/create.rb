@@ -4,7 +4,7 @@ module Notifyme
   module Events
     module Issue
       class Create < Base
-        def initialize(event)
+        def initialize(event) # rubocop:disable Lint/MissingSuper
           @event = event
         end
 
