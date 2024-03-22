@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/ExplicitBlockArgument:
-  Exclude:
-  - lib/notifyme/telegram_bot/bot.rb
 Style/HashConversion:
   Exclude:
   - app/models/concerns/user_preferences_model.rb

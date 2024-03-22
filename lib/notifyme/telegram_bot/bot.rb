@@ -6,10 +6,8 @@ module Notifyme
   module TelegramBot
     class Bot
       class << self
-        def run
-          Telegram::Bot::Client.run(Notifyme::Settings.telegram_bot_default_chat_id) do |bot|
-            yield(bot)
-          end
+        def run(&block)
+          Telegram::Bot::Client.run(Notifyme::Settings.telegram_bot_default_chat_id, &block)
         end
 
         def send_message(content_type, content, chat_ids)
