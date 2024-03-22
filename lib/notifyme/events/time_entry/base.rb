@@ -40,7 +40,7 @@ module Notifyme
         end
 
         def hour_added_css_class(entry)
-          'hours_' + (entry[:add] ? 'add' : 'sub')
+          'hours_' + (entry[:add] ? 'add' : 'sub') # rubocop:disable Style/StringConcatenation
         end
 
         def hour_added_text(entry)

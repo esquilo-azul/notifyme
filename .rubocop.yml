@@ -1,11 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/StringConcatenation:
-  Exclude:
-  - lib/notifyme/events/time_entry/base.rb
-  - lib/notifyme/hooks/add_assets.rb
-  - spec/lib/notifyme/notify_spec.rb
 Style/SuperWithArgsParentheses:
   Exclude:
   - app/helpers/notifyme_mailer_helper.rb

@@ -74,7 +74,7 @@ RSpec.describe Notifyme::Notify do
   describe 'issues configuration' do
     def create_user(login)
       u = User.new(firstname: login, lastname: 'Stubbed', mail: "#{login}@stubworld.net")
-      u.login = login + '_stub'
+      u.login = login + '_stub' # rubocop:disable Style/StringConcatenation
       u.save!
       Member.create!(project: the_project, user: u, roles: [Role.first],
                      mail_notification: true)
