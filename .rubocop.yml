@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/DocumentDynamicEvalDefinition:
-  Exclude:
-  - app/models/user_telegram_preferences.rb
 Style/ExplicitBlockArgument:
   Exclude:
   - lib/notifyme/telegram_bot/bot.rb

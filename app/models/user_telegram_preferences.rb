@@ -41,7 +41,7 @@ class UserTelegramPreferences
   validates :issues, presence: true, inclusion: { in: issues_values }
 
   PREFS.each do |k, v|
-    class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
+    class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1 # rubocop:disable Style/DocumentDynamicEvalDefinition
       def #{k}
         pref_get(__method__, #{v[:get]})
       end
