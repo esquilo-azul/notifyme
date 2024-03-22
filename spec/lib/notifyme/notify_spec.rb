@@ -133,7 +133,7 @@ RSpec.describe ::Notifyme::Notify do
           end
 
           it { expect(:user_telegram_prefs_save_result).to be_truthy }
-          it { expect(notified_user.telegram_pref.no_self_notified).to eq(false) }
+          it { expect(notified_user.telegram_pref.no_self_notified).to eq(false) } # rubocop:disable RSpec/BeEq
           it { expect(notified_user.telegram_pref.issues).to eq(issues_pref) }
           it { expect(notified_user.telegram_pref.issues_project_ids).to eq(issues_project_ids) }
 
