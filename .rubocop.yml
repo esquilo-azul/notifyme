@@ -1,29 +1,111 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
+---
+inherit_gem:
+  eac_rails_gem_support: ".rubocop.yml"
+Capybara/ClickLinkOrButtonStyle:
   Exclude:
-    - test/**/*_test.rb
-  TargetRubyVersion: 2.4
-  TargetRailsVersion: 4.2
-
-Layout/LineLength:
-  Max: 100
-
+  - spec/controllers/user_preferences_shared_context.rb
+Gemspec/DeprecatedAttributeAssignment:
+  Exclude:
+  - notifyme.gemspec
+Gemspec/RequiredRubyVersion:
+  Exclude:
+  - notifyme.gemspec
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - lib/notifyme/settings.rb
+  - spec/lib/notifyme/notify_spec.rb
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+  - app/controllers/telegram_preferences_controller.rb
+  - lib/notifyme/events/time_entry/base/by_activity.rb
+  - lib/notifyme/git/html_branches_graph/log_line.rb
+Lint/DuplicateBranch:
+  Exclude:
+  - app/helpers/notifyme_mailer_helper.rb
+Lint/ErbNewArguments:
+  Exclude:
+  - lib/notifyme/git/html_branches_graph/log_line.rb
+  - lib/notifyme/git/old_new_branch/html_diff.rb
+  - lib/notifyme/html/base.rb
+Lint/MissingSuper:
+  Exclude:
+  - lib/notifyme/events/issue/create.rb
+Lint/RedundantCopDisableDirective:
+  Exclude:
+  - lib/notifyme/telegram_bot/commands/user_set.rb
+  - spec/lib/notifyme/notify_spec.rb
 Metrics/BlockLength:
   Exclude:
-    - lib/tasks/*.rake
-    - spec/**/*.rb
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - lib/tasks/events.rake
+Naming/VariableNumber:
+  Exclude:
+  - spec/lib/notifyme/notify_spec.rb
+RSpec/BeEq:
+  Exclude:
+  - spec/lib/notifyme/notify_spec.rb
+Rails/EagerEvaluationLogMessage:
+  Exclude:
+  - lib/notifyme/git/repository/notify.rb
+  - lib/notifyme/git/repository/reset.rb
+Rails/FindEach:
+  Exclude:
+  - lib/tasks/git.rake
+  - spec/controllers/user_preferences_shared_context.rb
+Rails/Pluck:
+  Exclude:
+  - lib/notifyme/git/html_branches_graph/log_line.rb
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Exclude:
+  - app/models/repository_branch.rb
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+  - app/models/repository_branch.rb
+  - app/models/telegram_chat.rb
+Style/DocumentDynamicEvalDefinition:
+  Exclude:
+  - app/models/user_telegram_preferences.rb
+Style/ExplicitBlockArgument:
+  Exclude:
+  - lib/notifyme/telegram_bot/bot.rb
+Style/HashConversion:
+  Exclude:
+  - app/models/concerns/user_preferences_model.rb
+Style/IfWithBooleanLiteralBranches:
+  Exclude:
+  - lib/notifyme/git/html_branches_graph/log_line.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - app/models/assignee_reminder_mailer.rb
+  - init.rb
+  - lib/notifyme/patches/issue_patch.rb
+  - lib/notifyme/patches/users_helper_patch.rb
+  - lib/tasks/notifyme.rake
+  - notifyme.gemspec
+  - spec/controllers/email_extra_preferences_controller_spec.rb
+  - spec/controllers/telegram_preferences_controller_spec.rb
+  - spec/controllers/user_preferences_shared_context.rb
+  - spec/lib/notifyme/events/issue/update_spec.rb
+  - spec/lib/notifyme/notify_spec.rb
+  - spec/lib/notifyme/telegram_bot/senders/fake_spec.rb
+  - spec/lib/notifyme/utils/suppress_class_method_spec.rb
+Style/RedundantRegexpEscape:
+  Exclude:
+  - app/models/user_email_extra_preferences.rb
+Style/RedundantStringEscape:
+  Exclude:
+  - lib/notifyme/html/base.rb
+Style/SafeNavigation:
+  Exclude:
+  - lib/notifyme/git/old_new_branch.rb
+  - lib/notifyme/patches/repository_patch.rb
+Style/SlicingWithRange:
+  Exclude:
+  - lib/notifyme/telegram_bot/command_factory.rb
+Style/StringConcatenation:
+  Exclude:
+  - lib/notifyme/events/time_entry/base.rb
+  - lib/notifyme/hooks/add_assets.rb
+  - spec/lib/notifyme/notify_spec.rb
+Style/SuperWithArgsParentheses:
+  Exclude:
+  - app/helpers/notifyme_mailer_helper.rb

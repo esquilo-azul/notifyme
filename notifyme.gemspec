@@ -23,5 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'telegram-bot-ruby', '~> 2.0'
   s.add_dependency 'wkhtmltoimage-binary', '~> 0.12', '>= 0.12.5'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
+  s.add_development_dependency 'eac_rails_gem_support', '~> 0.9', '>= 0.9.2'
 end
