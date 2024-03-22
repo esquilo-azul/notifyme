@@ -1,10 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-  - lib/notifyme/settings.rb
-  - spec/lib/notifyme/notify_spec.rb
 Layout/MultilineMethodCallIndentation:
   Exclude:
   - app/controllers/telegram_preferences_controller.rb

@@ -105,7 +105,7 @@ RSpec.describe ::Notifyme::Notify do
       [['all'], ['selected'], ['selected', true], ['only_my_events'], ['only_assigned'],
        ['only_owner'], ['none']].each_with_index do |prefs, index|
         context "when {author: #{users[0]}, assigned: #{users[1].if_present('nil')}" \
-          ", issues_pref: #{prefs[0]}, issues_pref_projects: #{prefs[1] ? 'true' : 'false'}}" do
+                ", issues_pref: #{prefs[0]}, issues_pref_projects: #{prefs[1] ? 'true' : 'false'}}" do # rubocop:disable Layout/LineLength
           let(:author) { send("#{users[0]}_user") }
           let(:assigned) { users[1].if_present { |x| send("#{x}_user") } }
           let(:issue) do

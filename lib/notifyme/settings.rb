@@ -38,7 +38,7 @@ module Notifyme
         return v if v.present?
 
         raise "Setting.plugin_notifyme['#{key}'] is blank. " \
-          "Set it in Notifyme's plugin configuration page."
+              "Set it in Notifyme's plugin configuration page."
       end
     end
   end
