@@ -22,7 +22,7 @@ RSpec.describe ::Notifyme::Notify do
         end
       end
     end
-    let(:user) { users(:users_002) }
+    let(:user) { users(:users_002) } # rubocop:disable Naming/VariableNumber
     let(:telegram_chat) do
       ::TelegramChat.create!(chat_id: 12_345_678, chat_type: 'private', chat_name: 'Admin',
                              user: user)

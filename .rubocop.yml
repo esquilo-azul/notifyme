@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Naming/VariableNumber:
-  Exclude:
-  - spec/lib/notifyme/notify_spec.rb
 RSpec/BeEq:
   Exclude:
   - spec/lib/notifyme/notify_spec.rb
