@@ -5,6 +5,7 @@ module UserPreferencesModel
 
   included do
     include ::ActiveModel::Model
+
     validates :user, presence: true
   end
 

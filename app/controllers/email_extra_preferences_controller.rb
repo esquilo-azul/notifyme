@@ -13,7 +13,7 @@ class EmailExtraPreferencesController < ApplicationController
     r
   end
 
-  def sanitize_boolean(value)
+  def sanitize_boolean(value) # rubocop:disable Naming/PredicateMethod
     return false if value.blank?
     return false if %w[0 false].include?(value.to_s.strip)
 

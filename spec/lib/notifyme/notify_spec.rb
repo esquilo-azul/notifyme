@@ -143,7 +143,7 @@ RSpec.describe Notifyme::Notify do
 
           it do
             expect(Notifyme::TelegramBot::Senders::Fake.messages.last[:chat_ids])
-              .send(notified, include(the_telegram_chat.chat_id))
+              .send(notified, include(the_telegram_chat.chat_id)) # rubocop:disable RSpec/MissingExpectationTargetMethod
           end
         end
       end

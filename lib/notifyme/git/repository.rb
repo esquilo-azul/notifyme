@@ -6,6 +6,7 @@ module Notifyme
       include ::Notifyme::Git::Repository::OldNewBranches
       include ::Notifyme::Git::Repository::Reset
       include ::Notifyme::Git::Repository::Notify
+
       attr_reader :repository
 
       def initialize(repository)

@@ -14,7 +14,7 @@ module Notifyme
 
         def merge_base(repository, *commits)
           refs = commits.dup
-          while refs.count > 1
+          while refs.many?
             refs[1] = merge_base_pair(repository, refs[0], refs[1])
             return nil if refs[1].blank?
 
