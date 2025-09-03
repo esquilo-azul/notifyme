@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_utils', '~> 0.128', '>= 0.128.3'
   s.add_dependency 'htmlentities', '~> 4.3', '>= 4.3.4'
   s.add_dependency 'imgkit', '~> 1.6', '>= 1.6.3'
-  s.add_dependency 'telegram-bot-ruby', '~> 2.0'
+  s.add_dependency 'telegram-bot-ruby', '~> 2.4'
   s.add_dependency 'wkhtmltoimage-binary', '~> 0.12', '>= 0.12.5'
 
   s.add_development_dependency 'eac_rails_gem_support', '~> 0.11'
