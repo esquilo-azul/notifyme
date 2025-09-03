@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency 'eac_ruby_utils', '~> 0.121'
+  s.add_dependency 'eac_ruby_utils', '~> 0.128', '>= 0.128.3'
   s.add_dependency 'htmlentities', '~> 4.3', '>= 4.3.4'
   s.add_dependency 'imgkit', '~> 1.6', '>= 1.6.3'
   s.add_dependency 'telegram-bot-ruby', '~> 2.0'
