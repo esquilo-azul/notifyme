@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_dependency 'concerns/user_preferences_controller'
-
 class TelegramPreferencesController < ApplicationController
-  include ::UserPreferencesController
+  include ::Notifyme::UserPreferencesControllerConcern
 
   before_action :build_chats
 
