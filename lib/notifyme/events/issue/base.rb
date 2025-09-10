@@ -4,7 +4,7 @@ module Notifyme
   module Events
     module Issue
       class Base
-        include Notifyme::Html::Base
+        include Notifyme::HTML::Base
         include IssuesHelper
         include CustomFieldsHelper
         include ActionView::Helpers::SanitizeHelper

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Notifyme
-  module Html
+  module HTML
     module Base
       include ApplicationHelper
       include ActionView::Helpers::TagHelper

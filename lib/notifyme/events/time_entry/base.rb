@@ -4,7 +4,7 @@ module Notifyme
   module Events
     module TimeEntry
       class Base
-        include Notifyme::Html::Base
+        include Notifyme::HTML::Base
         include ByActivity
         include ActionView::Helpers::NumberHelper
 
