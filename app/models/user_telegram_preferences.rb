@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_dependency 'concerns/user_preferences_model'
-
 class UserTelegramPreferences
-  include UserPreferencesModel
+  include Notifyme::UserPreferencesModelConcern
 
   PREFS = {
     no_self_notified: {

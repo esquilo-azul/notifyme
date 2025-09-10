@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_dependency 'concerns/user_preferences_model'
-
 class UserEmailExtraPreferences
-  include UserPreferencesModel
+  include Notifyme::UserPreferencesModelConcern
 
   validates :assignee_reminder, inclusion: { in: [true, false] }
 
