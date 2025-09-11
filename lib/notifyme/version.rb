@@ -5,4 +5,7 @@ module Notifyme
   HOMEPAGE = 'https://github.com/esquilo-azul/notifyme'
   SUMMARY = 'Notificações.'
   VERSION = '0.4.16'
+
+  module Version
+  end
 end
