@@ -8,9 +8,9 @@ RSpec.describe Notifyme::Events::Issue::Update do
 
   before do
     Setting.plugin_notifyme = Setting.plugin_notifyme.merge(issue_update_event_notify: true)
-    EventsManager.delay_disabled = true
-    EventsManager.log_exceptions_disabled = true
-    EventsManager::Settings.event_exception_unchecked = false
+    RedmineEventsManager.delay_disabled = true
+    RedmineEventsManager.log_exceptions_disabled = true
+    RedmineEventsManager::Settings.event_exception_unchecked = false
   end
 
   it do
