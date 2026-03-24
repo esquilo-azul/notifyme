@@ -74,6 +74,6 @@ module Notifyme
   end
 end
 
-unless Repository.included_modules.include? Notifyme::Patches::RepositoryPatch
+unless Repository.include?(Notifyme::Patches::RepositoryPatch)
   Repository.include Notifyme::Patches::RepositoryPatch
 end

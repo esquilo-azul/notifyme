@@ -39,4 +39,4 @@ end
 
 source = Notifyme::Patches::IssuePatch
 target = Issue
-target.send(:include, source) unless target.included_modules.include? source
+target.send(:include, source) unless target.include?(source)

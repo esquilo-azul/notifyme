@@ -21,6 +21,4 @@ module Notifyme
   end
 end
 
-unless User.included_modules.include? Notifyme::Patches::UserPatch
-  User.include Notifyme::Patches::UserPatch
-end
+User.include Notifyme::Patches::UserPatch unless User.include?(Notifyme::Patches::UserPatch)
