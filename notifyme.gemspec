@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
   s.files = `git ls-files`.split("\n")
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.2'
 
   s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.4'
   s.add_dependency 'htmlentities', '~> 4.4', '>= 4.4.2'

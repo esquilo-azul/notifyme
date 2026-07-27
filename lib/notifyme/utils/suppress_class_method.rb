@@ -8,8 +8,8 @@ module Notifyme
         @singles = []
       end
 
-      def add(klass, method_name, proc = nil, &block)
-        @singles << SingleSuppress.new(klass, method_name, proc, &block)
+      def add(klass, method_name, proc = nil, &)
+        @singles << SingleSuppress.new(klass, method_name, proc, &)
       end
 
       def on_suppress(&block)
