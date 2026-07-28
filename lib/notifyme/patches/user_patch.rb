@@ -20,5 +20,3 @@ module Notifyme
     end
   end
 end
-
-User.include Notifyme::Patches::UserPatch unless User.include?(Notifyme::Patches::UserPatch)

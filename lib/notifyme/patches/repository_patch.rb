@@ -73,7 +73,3 @@ module Notifyme
     end
   end
 end
-
-unless Repository.include?(Notifyme::Patches::RepositoryPatch)
-  Repository.include Notifyme::Patches::RepositoryPatch
-end
