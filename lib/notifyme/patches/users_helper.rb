@@ -2,7 +2,7 @@
 
 module Notifyme
   module Patches
-    module UsersHelperPatch
+    module UsersHelper
       def self.included(base)
         require_dependency 'users_helper'
         base.prepend(InstanceMethods)

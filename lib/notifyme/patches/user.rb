@@ -2,7 +2,7 @@
 
 module Notifyme
   module Patches
-    module UserPatch
+    module User
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.has_many :telegram_chats

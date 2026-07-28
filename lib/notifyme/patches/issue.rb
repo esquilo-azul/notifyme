@@ -2,7 +2,7 @@
 
 module Notifyme
   module Patches
-    module IssuePatch
+    module Issue
       def self.included(base)
         base.send(:include, NotifymeNotifiedUsers)
       end

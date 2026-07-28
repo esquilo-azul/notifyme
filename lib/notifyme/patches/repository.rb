@@ -2,7 +2,7 @@
 
 module Notifyme
   module Patches
-    module RepositoryPatch
+    module Repository
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.send(:include, NotifyMethods)
