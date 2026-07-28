@@ -17,11 +17,11 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency 'eac_ruby_utils', '~> 0.130'
+  s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.4'
   s.add_dependency 'htmlentities', '~> 4.4', '>= 4.4.2'
   s.add_dependency 'imgkit', '~> 1.6', '>= 1.6.3'
-  s.add_dependency 'telegram-bot-ruby', '~> 2.6'
+  s.add_dependency 'telegram-bot-ruby', '~> 2.8'
   s.add_dependency 'wkhtmltoimage-binary', '~> 0.12', '>= 0.12.5'
 
-  s.add_development_dependency 'eac_rails_gem_support', '~> 0.12', '>= 0.12.1'
+  s.add_development_dependency 'eac_rails_gem_support', '~> 0.13', '>= 0.13.1'
 end
