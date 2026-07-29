@@ -8,6 +8,8 @@ module Notifyme
       end
 
       module NotifymeNotifiedUsers
+        enable_memoized
+
         def notifyme_notified_users
           telegram_mail_notification_suppress.on_suppress do
             notified_users
@@ -16,11 +18,8 @@ module Notifyme
 
         private
 
-        def telegram_mail_notification_suppress
-          @telegram_mail_notification_suppress ||= telegram_mail_notification_suppresss_uncached
-        end
-
-        def telegram_mail_notification_suppresss_uncached
+        # @return [Notifyme::Utils::SuppressClassMethod]
+        memoize def telegram_mail_notification_suppress
           s = ::Notifyme::Utils::SuppressClassMethod.new
           ::User.new # Force ":mail_notification" method creation
           s.add(::User, :mail_notification) do
