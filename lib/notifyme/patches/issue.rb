@@ -18,18 +18,30 @@ module Notifyme
 
         private
 
-        # @return [Notifyme::Utils::SuppressClassMethod]
-        memoize def telegram_mail_notification_suppress
-          s = ::Notifyme::Utils::SuppressClassMethod.new
-          ::User.new # Force ":mail_notification" method creation
-          s.add(::User, :mail_notification) do
-            telegram_pref.issues
-          end
+        # @param suppress [Notifyme::Utils::SuppressClassMethod]
+        # @return [void]
+        def suppress_member_methods(suppress)
           ::Member.new # Force ":mail_notification?" method creation
-          s.add(::Member, :mail_notification?) do
+          suppress.add(::Member, :mail_notification?) do
             principal.telegram_pref.issues_project_ids.include?(project_id)
           end
-          s
+        end
+
+        # @param suppress [Notifyme::Utils::SuppressClassMethod]
+        # @return [void]
+        def suppress_user_methods(suppress)
+          ::User.new # Force ":mail_notification" method creation
+          suppress.add(::User, :mail_notification) do
+            telegram_pref.issues
+          end
+        end
+
+        # @return [Notifyme::Utils::SuppressClassMethod]
+        memoize def telegram_mail_notification_suppress
+          %i[user member]
+            .each_with_object(::Notifyme::Utils::SuppressClassMethod.new) do |e, a|
+            send(:"suppress_#{e}_methods", a)
+          end
         end
       end
     end
