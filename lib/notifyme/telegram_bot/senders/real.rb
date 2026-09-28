@@ -52,7 +52,9 @@ module Notifyme
           end
 
           def send_html_photo(html, chat_id = nil)
-            send_photo(html_to_image_file(html), chat_id)
+            on_html_image_file(html) do |photo_file|
+              send_photo(photo_file, chat_id)
+            end
           end
 
           def send_photo(photo, chat_id)
@@ -65,11 +67,7 @@ module Notifyme
             telegram_send_photo(chat_id: chat_id, photo: file_id)
           end
 
-          def html_to_image_file(html)
-            kit = IMGKit.new(html, quality: 50, width: 600, crop_h: 1200)
-            file = Tempfile.new(['development-helper-image', '.png'])
-            Faraday::UploadIO.new(kit.to_file(file.path), nil)
-          end
+          require_sub __FILE__, require_mode: :kernel
         end
       end
     end
