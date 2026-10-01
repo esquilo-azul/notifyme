@@ -1,0 +1,2 @@
+# Task dependencies
+taskeiro_add_dependency redmine_base wkhtmltopdf
