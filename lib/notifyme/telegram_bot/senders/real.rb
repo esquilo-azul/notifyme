@@ -46,8 +46,7 @@ module Notifyme
               if file_id
                 send_photo_by_file_id(file_id, chat_id)
               else
-                r = send_html_photo(html, chat_id)
-                file_id = r['result']['photo'][-1]['file_id'] if r['ok']
+                file_id = send_html_photo(html, chat_id).photo.last.file_id
               end
             end
           end

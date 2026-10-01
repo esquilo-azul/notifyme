@@ -22,14 +22,12 @@ module Notifyme
 
           def telegram_send_message(options); end
 
+          # @return [Telegram::Bot::Types::Message]
           def telegram_send_photo(_options)
-            {
-              'result' => {
-                'photo' => [{
-                  'file_id' => 1234
-                }]
-              }
-            }
+            ::Telegram::Bot::Types::Message.new(
+              message_id: 1, date: 0, chat: { id: 1, type: 'private' },
+              photo: [{ file_id: '1234', file_unique_id: '1234', width: 1, height: 1 }]
+            )
           end
         end
       end
