@@ -12,10 +12,16 @@ module Notifyme
 
           # @return [Faraday::UploadIO]
           def result
-            block.call(faraday_upload_io)
+            on_temp_image_file do
+              block.call(faraday_upload_io)
+            end
           end
 
           protected
+
+          # @!attribute [rw] temp_image_file
+          #   @return [Pathname]
+          attr_accessor :temp_image_file
 
           # @return [Faraday::UploadIO]
           def faraday_upload_io
@@ -32,9 +38,12 @@ module Notifyme
             IMGKit.new(html, quality: 50, width: 600, crop_h: 1200)
           end
 
-          # @return [File]
-          def temp_image_file
-            Tempfile.new(['development-helper-image', '.png'])
+          # @return [Object]
+          def on_temp_image_file
+            ::EacRubyUtils::Fs::Temp.on_file(['development-helper-image', '.png']) do |temp_file|
+              self.temp_image_file = temp_file.to_pathname
+              yield
+            end
           end
         end
       end
