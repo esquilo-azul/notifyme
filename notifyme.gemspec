@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.required_ruby_version = '>= 3.2' # rubocop:disable Gemspec/RequiredRubyVersion
 
-  s.add_dependency 'eac_ruby_utils', '~> 0.134', '>= 0.134.1'
+  s.add_dependency 'eac_ruby_utils', '~> 0.135'
   s.add_dependency 'htmlentities', '~> 4.4', '>= 4.4.2'
   s.add_dependency 'imgkit', '~> 1.6', '>= 1.6.3'
   s.add_dependency 'telegram-bot-ruby', '~> 2.8', '>= 2.8.1'
 
-  s.add_development_dependency 'eac_rails_gem_support', '~> 0.15', '>= 0.15.1'
+  s.add_development_dependency 'eac_rails_gem_support', '~> 0.15', '>= 0.15.3'
 end
