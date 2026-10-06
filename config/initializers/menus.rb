@@ -3,5 +3,6 @@
 Redmine::Plugin.by_path(__FILE__).nonprojects_menu do |menu|
   menu.push_plugin_settings
   menu.push :telegram_chats, { controller: 'telegram_chats', action: 'index' },
-            caption: :label_telegram_chats
+            caption: :label_telegram_chats, icon: 'telegram', plugin: 'notifyme',
+            html: { class: 'icon icon-telegram' }
 end
