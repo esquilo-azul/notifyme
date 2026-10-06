@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TelegramChatsController < ApplicationController
-  layout 'admin'
+  layout 'nonproject_modules'
   before_action :require_admin
 
   active_scaffold :telegram_chat do |conf|
