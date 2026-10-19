@@ -1,3 +1,5 @@
 ---
 redmine_events_manager:
   version_or_higher: 0.6.0
+redmine_installer:
+  version_or_higher: 0.29.0
